@@ -1,5 +1,6 @@
 import { Red_Hat_Mono } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const redHatMono = Red_Hat_Mono({
   variable: "--font-red-hat-mono",
@@ -15,7 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${redHatMono.variable} antialiased`}>{children}</body>
+      <body className={`${redHatMono.variable} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

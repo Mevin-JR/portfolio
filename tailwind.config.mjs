@@ -11,6 +11,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        float_up: {
+          "0%": { backgroundPosition: "0 0" },
+          "100%": { backgroundPosition: "0 -140px" },
+        },
+      },
+      animation: {
+        float_up: "float_up 30s linear infinite",
+      },
     },
   },
   plugins: [],
