@@ -1,10 +1,16 @@
-import { Red_Hat_Mono } from "next/font/google";
+import { Red_Hat_Mono, Aldrich } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
 const redHatMono = Red_Hat_Mono({
   variable: "--font-red-hat-mono",
   subsets: ["latin"],
+});
+
+const aldrich = Aldrich({
+  variable: "--font-aldrich",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata = {
@@ -16,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${redHatMono.variable} antialiased`}>
+      <body className={`${aldrich.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

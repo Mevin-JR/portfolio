@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="z-50 fixed top-3 left-5 right-5 rounded-lg bg-transparent p-4 transition-all duration-300 ease-in-out">
+      <nav className="z-20 fixed top-3 left-5 right-5 rounded-lg bg-transparent p-4 transition-all duration-300 ease-in-out">
         <div className="flex justify-between items-center">
           <h1
             className="text-2xl font-semibold flex gap-1 items-end cursor-pointer"
