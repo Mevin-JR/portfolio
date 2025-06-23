@@ -16,9 +16,14 @@ export default function Home() {
 
       {/* Foreground Content */}
       <Navbar />
-      <main className="flex flex-col items-center justify-center min-h-screen p-8 pb-20 sm:p-20">
+      <main className="flex flex-col items-center justify-center min-h-screen">
         <Main />
       </main>
+      {/* <div className="mt-10 text-white text-center">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <p key={i}>Scroll test line {i + 1}</p>
+        ))}
+      </div> */}
     </>
   );
 }

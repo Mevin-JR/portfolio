@@ -14,8 +14,7 @@
     "next": "15.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-pdf": "^9.2.1",
-    "react-scroll-parallax": "^3.4.5"
+    "react-pdf": "^9.2.1"
   },
   "devDependencies": {
     "postcss": "^8",

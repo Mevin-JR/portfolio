@@ -50,6 +50,18 @@ export default function ResumeBtn() {
     }
   }, []);
 
+  useEffect(() => {
+    if (showResume) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showResume]);
+
   const toggleShowResume = () => {
     setShowResume((prev) => !prev);
     resetResumeScale();
@@ -87,7 +99,7 @@ export default function ResumeBtn() {
       <AnimatePresence>
         {showResume && (
           <motion.div
-            className="absolute z-30 top-0 left-0 flex items-center justify-center w-screen h-screen bg-black/55"
+            className="fixed z-30 top-0 left-0 flex items-center justify-center w-screen h-screen bg-black/55"
             onClick={() => setShowResume(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -96,7 +108,7 @@ export default function ResumeBtn() {
           >
             <motion.div
               id="resume-preview"
-              className="relative p-10 rounded max-w-2xl max-h-screen overflow-auto"
+              className="relative rounded max-h-[95vh] max-w-[95vw] overflow-auto"
               style={{ userSelect: "text" }}
               onClick={(e) => e.stopPropagation()}
               initial={{ opacity: 0, scale: 0.9 }}

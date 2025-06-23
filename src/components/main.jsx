@@ -1,18 +1,13 @@
 import Image from "next/image";
 import ResumeBtn from "./resumeBtn";
+import Socials from "./socials";
 
 export default function Main() {
-  const socials = [
-    { name: "LinkedIn", icon: "/icons/socials/linkedIn.svg" },
-    { name: "Github", icon: "/icons/socials/github.svg" },
-    { name: "Mail", icon: "/icons/socials/mail.svg" },
-  ];
-
   return (
     <>
       <section
         id="hero-section"
-        className="flex flex-col gap-10 items-center justify-center text-center text-white"
+        className="w-[80vw] flex flex-col gap-10 items-center justify-center text-center text-white"
       >
         <h1 id="hero-motto" className="text-2xl md:text-4xl font-bold">
           Bringing your visions to life,{" "}
@@ -32,24 +27,10 @@ export default function Main() {
         </h2>
         <div
           id="hero-interactive"
-          className="flex flex-col gap-5 md:flex-row md:gap-10 justify-between items-center"
+          className="flex flex-col gap-10 md:flex-row md:gap-14 justify-between items-center"
         >
           <ResumeBtn />
-
-          <div id="socials">
-            <h2 className="text-xl text-gray-300">Find me on</h2>
-            <div className="flex gap-4 items-center justify-center">
-              {socials.map((social) => (
-                <Image
-                  key={social.name}
-                  src={social.icon}
-                  alt={social.name}
-                  height={22}
-                  width={22}
-                />
-              ))}
-            </div>
-          </div>
+          <Socials />
         </div>
       </section>
     </>
