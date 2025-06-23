@@ -1,6 +1,6 @@
 import { Red_Hat_Mono, Aldrich } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { Toaster } from "react-hot-toast";
 
 const redHatMono = Red_Hat_Mono({
   variable: "--font-red-hat-mono",
@@ -31,7 +31,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${aldrich.variable} antialiased`}>
-        <Providers>{children}</Providers>
+        {children}
+        <Toaster position="bottom-center" />
       </body>
     </html>
   );
