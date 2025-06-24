@@ -20,10 +20,15 @@ export default {
           "0%": { transform: "translateY(8%)" },
           "100%": { transform: "translateY(-8%)" },
         },
+        bobbing: {
+          "0%": { transform: "translateY(1%)" },
+          "100%": { transform: "translateY(-1%)" },
+        },
       },
       animation: {
         float_up: "float_up 30s linear infinite",
         arrow_down: "arrow_down 0.5s ease-in-out infinite alternate",
+        bobbing: "bobbing 1.75s ease-in-out infinite alternate",
       },
     },
   },

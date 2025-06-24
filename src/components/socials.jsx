@@ -43,6 +43,7 @@ export default function Socials() {
   const openTarget = (target) => {
     if (target.startsWith("copy")) {
       const email = target.replace("copy:", "");
+      // An unusual error here, when trying to copy using a mobile devices (without https or localhost)
       navigator.clipboard
         .writeText(email)
         .then(() => {
@@ -78,11 +79,11 @@ export default function Socials() {
   };
 
   return (
-    <ul className="flex gap-3 items-center justify-center">
+    <ul className="flex gap-3 items-center justify-center w-max">
       {socials.map(({ name, icon, target }) => (
         <Tooltip key={name} text={name} position="bottom" bgColor="transparent">
           <li
-            className="flex items-center justify-center 
+            className="flex items-center justify-center w-[50px] h-[50px]
             border border-gray-500 rounded bg-transparent p-2 cursor-pointer transition-shadow hover:shadow-[0_0_25px_2px_rgba(255,255,255,0.5)]"
             onClick={() => openTarget(target)}
           >

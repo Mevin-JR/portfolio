@@ -18,9 +18,9 @@ export default function Navbar() {
   // Change nav items here (dynamic)
   const navLinks = [
     { text: "Home", link: "/" },
-    { text: "About", link: "/about" },
-    { text: "Work", link: "/work" },
-    { text: "Contact", link: "/contact" },
+    { text: "About", link: "#about" },
+    { text: "Work", link: "#work" },
+    { text: "Contact", link: "#contact" },
   ];
 
   return (
