@@ -28,7 +28,7 @@ export default {
       animation: {
         float_up: "float_up 30s linear infinite",
         arrow_down: "arrow_down 0.5s ease-in-out infinite alternate",
-        bobbing: "bobbing 1.75s ease-in-out infinite alternate",
+        bobbing: "bobbing 1.5s ease-in-out infinite alternate",
       },
     },
   },

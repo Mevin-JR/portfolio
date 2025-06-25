@@ -7,6 +7,29 @@ import Socials from "./socials";
 import Image from "next/image";
 
 export default function Main() {
+  const skills = [
+    { name: "HTML", icon: "/icons/tech/HTML5.png" },
+    { name: "CSS", icon: "/icons/tech/CSS3.png" },
+    { name: "Tailwind CSS", icon: "/icons/tech/Tailwind_CSS.png" },
+    { name: "Bootstrap", icon: "/icons/tech/Bootstrap.png" },
+    { name: "JavaScript", icon: "/icons/tech/JavaScript.png" },
+    { name: "NodeJS", icon: "/icons/tech/Node_js.png" },
+    { name: "ReactJS", icon: "/icons/tech/React.png" },
+    { name: "NextJS", icon: "/icons/tech/Next_js.png" },
+    { name: "Express", icon: "/icons/tech/Express.png" },
+    { name: "Electron", icon: "/icons/tech/Electron.png" },
+    { name: "Firebase", icon: "/icons/tech/Firebase.png" },
+    { name: "Git", icon: "/icons/tech/Git.png" },
+    { name: "Github", icon: "/icons/tech/Github.png" },
+    { name: "MySQL", icon: "/icons/tech/MySQL.png" },
+    { name: "SQLite", icon: "/icons/tech/SQLite.png" },
+    { name: "Java", icon: "/icons/tech/Java.png" },
+    { name: "Python", icon: "/icons/tech/Python.png" },
+    { name: "Flask", icon: "/icons/tech/Flask.png" },
+    { name: "R", icon: "/icons/tech/R.png" },
+    { name: "Figma", icon: "/icons/tech/Figma.png" },
+  ];
+
   return (
     <>
       <section
@@ -40,7 +63,7 @@ export default function Main() {
 
       <section
         id="about"
-        className="h-screen w-[80vw] flex flex-col gap-10 md:flex-row md:gap-0 md:justify-between"
+        className="h-[80vh] w-[80vw] flex flex-col gap-10 md:flex-row md:gap-0 md:justify-between"
       >
         <motion.div
           id="about-left"
@@ -51,13 +74,22 @@ export default function Main() {
           viewport={{ once: false, amount: 0.1 }}
         >
           <div id="about-title">
-            <h1 className="text-gray-400 text-lg">ABOUT ME</h1>
-            <h2 className="text-2xl md:text-4xl font-bold">
-              Hi there! I'm{" "}
-              <span className="text-cyan-500 border-b-2 border-cyan-500">
+            <h1 className="text-gray-400 text-md md:text-lg uppercase">
+              About Me
+            </h1>
+            <div className="text-2xl md:text-4xl font-bold flex gap-3">
+              <h2>Hi there! I'm</h2>
+              <h2 className="text-cyan-400">
                 Mevin
-              </span>
-            </h2>
+                <Image
+                  src="/handdrawn_underline.png"
+                  alt="Underline"
+                  width={120}
+                  height={25}
+                  className="w-[80px] md:w-[90%]"
+                />
+              </h2>
+            </div>
           </div>
           <div className="text-gray-400">
             <p>
@@ -107,13 +139,31 @@ export default function Main() {
           />
         </motion.div>
       </section>
-      {/* 
-      <section id="work" className="h-screen w-[80vw]">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore
-        sequi quibusdam vel reiciendis at? Impedit facilis, necessitatibus
-        corporis eligendi eum vitae, commodi omnis ipsa maiores porro magni
-        deleniti, animi et.
-      </section> */}
+
+      <section
+        id="skills"
+        className="h-screen w-[80vw] flex flex-col items-center"
+      >
+        <h1 className="text-gray-400 text-md md:text-lg uppercase">
+          My Skills
+        </h1>
+        <h2 className="text-2xl md:text-4xl font-bold">Tools & Tech</h2>
+        <div
+          id="skills-cards"
+          className="mt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8"
+        >
+          {skills.map(({ name, icon }) => (
+            <div
+              key={name}
+              className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded text-center text-gray-400
+              flex flex-col gap-4 items-center justify-center"
+            >
+              <Image src={icon} alt={name} height={75} width={75} />
+              <h3>{name}</h3>
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
