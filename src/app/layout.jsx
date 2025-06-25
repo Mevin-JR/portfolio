@@ -1,11 +1,6 @@
-import { Red_Hat_Mono, Aldrich } from "next/font/google";
+import { Aldrich } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-
-const redHatMono = Red_Hat_Mono({
-  variable: "--font-red-hat-mono",
-  subsets: ["latin"],
-});
 
 const aldrich = Aldrich({
   variable: "--font-aldrich",

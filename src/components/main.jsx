@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 import ResumeBtn from "./resumeBtn";
 import Socials from "./socials";
