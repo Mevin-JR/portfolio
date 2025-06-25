@@ -1,15 +1,13 @@
-// Debug: Detect Promise overwrites and log Promise.withResolvers status
-console.log("Promise.withResolvers at startup:", typeof Promise.withResolvers);
-const origPromise = Promise;
-Object.defineProperty(globalThis, "Promise", {
-  set(v) {
-    console.log("Promise was overwritten!", v && v.name);
-    // Optionally, throw new Error('Promise overwritten!') to break the build
-  },
-  get() {
-    return origPromise;
-  },
-});
+if (!Promise.withResolvers) {
+  Promise.withResolvers = function () {
+    let resolve, reject;
+    const promise = new Promise((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    return { promise, resolve, reject };
+  };
+}
 
 import Main from "@/components/main";
 import Navbar from "@/components/navbar";
