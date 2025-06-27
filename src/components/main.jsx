@@ -151,7 +151,7 @@ export default function Main() {
               key={name}
               className="flex lg:flex-col gap-1 md:gap-4 items-center justify-center px-2 py-3 lg:px-4 lg:py-4
               bg-white/5 backdrop-blur-sm border border-white/20 shadow-md rounded 
-              text-center text-gray-400 text-xs md:text-lg"
+              text-center text-gray-400 text-xs md:text-lg hover:shadow-[0_0_30px_#06b6d4] hover:text-cyan-400 transition-all duration-200"
             >
               <Image
                 src={icon}
