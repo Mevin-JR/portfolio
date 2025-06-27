@@ -10,7 +10,7 @@ export default function Main() {
   const skills = [
     { name: "HTML", icon: "/icons/tech/HTML5.png" },
     { name: "CSS", icon: "/icons/tech/CSS3.png" },
-    { name: "Tailwind CSS", icon: "/icons/tech/Tailwind_CSS.png" },
+    { name: "Tailwind", icon: "/icons/tech/Tailwind_CSS.png" },
     { name: "Bootstrap", icon: "/icons/tech/Bootstrap.png" },
     { name: "JavaScript", icon: "/icons/tech/JavaScript.png" },
     { name: "NodeJS", icon: "/icons/tech/Node_js.png" },
@@ -61,18 +61,15 @@ export default function Main() {
         </div>
       </section>
 
-      <section
+      <motion.section
         id="about"
-        className="h-[80vh] w-[80vw] flex flex-col gap-10 md:flex-row md:gap-0 md:justify-between"
+        className="h-screen md:h-[80vh] w-[80vw] flex flex-col gap-10 justify-between md:flex-row md:gap-0 items-center"
+        initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
       >
-        <motion.div
-          id="about-left"
-          className="flex flex-col gap-5 md:w-[45%] md:mt-0"
-          initial={{ opacity: 0, y: 75 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <div id="about-left" className="flex flex-col gap-5 md:w-[45%] md:mt-0">
           <div id="about-title">
             <h1 className="text-gray-400 text-md md:text-lg uppercase">
               About Me
@@ -91,7 +88,7 @@ export default function Main() {
               </h2>
             </div>
           </div>
-          <div className="text-gray-400">
+          <div className="text-gray-400 text-sm md:text-sm lg:text-lg">
             <p>
               I'm Mevin John Rejimon, a full-stack developer who loves building
               powerful, user-friendly web applications. From frontend to
@@ -114,22 +111,15 @@ export default function Main() {
             </p>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <Socials />
           </motion.div>
-        </motion.div>
-        <motion.div
-          id="about-right"
-          className="md:w-[45%] h-auto"
-          initial={{ opacity: 0, y: 75 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        </div>
+        <div id="about-right" className="md:w-[45%] h-auto">
           <Image
             src="/about_right.png"
             alt="About Section Image"
@@ -137,12 +127,16 @@ export default function Main() {
             height={800}
             className="animate-bobbing"
           />
-        </motion.div>
-      </section>
+        </div>
+      </motion.section>
 
-      <section
+      <motion.section
         id="skills"
-        className="h-screen w-[80vw] flex flex-col items-center"
+        className="h-screen w-[80vw] flex flex-col items-center justify-center"
+        initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
       >
         <h1 className="text-gray-400 text-md md:text-lg uppercase">
           My Skills
@@ -150,20 +144,28 @@ export default function Main() {
         <h2 className="text-2xl md:text-4xl font-bold">Tools & Tech</h2>
         <div
           id="skills-cards"
-          className="mt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8"
+          className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-6 lg:gap-8"
         >
           {skills.map(({ name, icon }) => (
             <div
               key={name}
-              className="bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded text-center text-gray-400
-              flex flex-col gap-4 items-center justify-center"
+              className="flex lg:flex-col gap-1 md:gap-4 items-center justify-center px-2 py-3 lg:px-4 lg:py-4
+              bg-white/5 backdrop-blur-sm border border-white/20 shadow-md rounded 
+              text-center text-gray-400 text-xs md:text-lg"
             >
-              <Image src={icon} alt={name} height={75} width={75} />
+              <Image
+                src={icon}
+                alt={name}
+                height={75}
+                width={75}
+                className="h-[15px] md:h-[20px] lg:h-[75px] 
+                w-[15px] md:w-[20px] lg:w-[75px]"
+              />
               <h3>{name}</h3>
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }
