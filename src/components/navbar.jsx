@@ -34,8 +34,8 @@ export default function Navbar() {
           className="text-2xl font-semibold flex gap-[2px] items-end cursor-pointer"
           onClick={() => router.push("/")}
         >
-          Portfolio
-          <span className="text-sm text-cyan-400 mb-[5px] md:mb-[2px]">■</span>
+          MJR
+          <span className="text-sm text-cyan-400 mb-[3px] md:mb-[2px]">■</span>
         </h1>
         <ul className="hidden lg:flex gap-7 absolute left-1/2 transform -translate-x-1/2 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/20 shadow-md">
           {navLinks.map((navItem) => (

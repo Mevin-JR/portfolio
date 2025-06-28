@@ -75,16 +75,18 @@ export default function Main() {
               About Me
             </h1>
             <div className="text-2xl md:text-4xl font-bold flex gap-3">
-              <h2>Hi there! I'm</h2>
-              <h2 className="text-cyan-400">
-                Mevin
-                <Image
-                  src="/handdrawn_underline.png"
-                  alt="Underline"
-                  width={120}
-                  height={25}
-                  className="w-[80px] md:w-[90%]"
-                />
+              <h2>
+                Hi there! I'm{" "}
+                <span className="relative text-cyan-400">
+                  Mevin{" "}
+                  <Image
+                    src="/handdrawn_underline.png"
+                    alt="Underline"
+                    width={120}
+                    height={25}
+                    className="absolute right-0 w-[80px] md:w-full"
+                  />
+                </span>
               </h2>
             </div>
           </div>
@@ -138,10 +140,13 @@ export default function Main() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <h1 className="text-gray-400 text-md md:text-lg uppercase">
-          My Skills
-        </h1>
-        <h2 className="text-2xl md:text-4xl font-bold">Tools & Tech</h2>
+        <div id="skills-title" className="text-center">
+          <h1 className="text-gray-400 text-md md:text-lg uppercase">
+            My Skills
+          </h1>
+          <h2 className="text-2xl md:text-4xl font-bold">Tools & Tech</h2>
+        </div>
+
         <div
           id="skills-cards"
           className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-6 lg:gap-8"
@@ -164,6 +169,26 @@ export default function Main() {
               <h3>{name}</h3>
             </div>
           ))}
+        </div>
+      </motion.section>
+      <motion.section
+        id="work"
+        className="h-screen w-[80vw] flex flex-col items-center justify-center"
+        initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <div id="work-title" className="text-center">
+          <h1 className="text-gray-400 text-md md:text-lg uppercase">
+            My Works
+          </h1>
+          <h2 className="text-2xl md:text-4xl font-bold">
+            Featured <span className="text-cyan-400">Projects</span>
+          </h2>
+        </div>
+        <div id="work-container">
+          
         </div>
       </motion.section>
     </>

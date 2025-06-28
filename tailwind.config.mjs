@@ -24,16 +24,11 @@ export default {
           "0%": { transform: "translateY(1%)" },
           "100%": { transform: "translateY(-1%)" },
         },
-        rotate_360: {
-          "0%": { transform: "rotateY(0deg)" },
-          "100%": { transform: "rotateY(360deg)" },
-        },
       },
       animation: {
         float_up: "float_up 30s linear infinite",
         arrow_down: "arrow_down 0.5s ease-in-out infinite alternate",
         bobbing: "bobbing 1.5s ease-in-out infinite alternate",
-        rotate_360: "rotate_360 1s linear infinite",
       },
     },
   },
