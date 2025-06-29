@@ -187,9 +187,7 @@ export default function Main() {
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
         </div>
-        <div id="work-container">
-          
-        </div>
+        <div id="work-container"></div>
       </motion.section>
     </>
   );
