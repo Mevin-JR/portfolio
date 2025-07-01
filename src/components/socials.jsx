@@ -84,7 +84,7 @@ export default function Socials() {
         <Tooltip key={name} text={name} position="bottom" bgColor="transparent">
           <li
             className="flex items-center justify-center w-[50px] h-[50px]
-            border border-gray-500 rounded bg-transparent p-2 cursor-pointer transition-shadow hover:shadow-[0_0_25px_2px_rgba(255,255,255,0.5)]"
+            border border-gray-500 rounded bg-transparent p-2 transition-shadow hover:shadow-[0_0_25px_2px_rgba(255,255,255,0.5)]"
             onClick={() => openTarget(target)}
           >
             {icon}

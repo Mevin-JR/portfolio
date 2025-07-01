@@ -63,7 +63,7 @@ export default function Main() {
 
       <motion.section
         id="about"
-        className="h-screen md:h-[80vh] w-[80vw] flex flex-col gap-10 justify-between md:flex-row md:gap-0 items-center"
+        className="min-h-screen py-10 w-[80vw] flex flex-col gap-10 justify-between md:flex-row md:gap-0 items-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -84,6 +84,7 @@ export default function Main() {
                     alt="Underline"
                     width={120}
                     height={25}
+                    priority
                     className="absolute right-0 w-[80px] md:w-full"
                   />
                 </span>
@@ -127,6 +128,7 @@ export default function Main() {
             alt="About Section Image"
             width={800}
             height={800}
+            priority
             className="animate-bobbing"
           />
         </div>
@@ -134,13 +136,13 @@ export default function Main() {
 
       <motion.section
         id="skills"
-        className="h-screen w-[80vw] flex flex-col items-center justify-center"
+        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div id="skills-title" className="text-center">
+        <div id="skills-title" className="text-center mb-10">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">
             My Skills
           </h1>
@@ -149,7 +151,7 @@ export default function Main() {
 
         <div
           id="skills-cards"
-          className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-6 lg:gap-8"
+          className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-6"
         >
           {skills.map(({ name, icon }) => (
             <div
@@ -173,13 +175,13 @@ export default function Main() {
       </motion.section>
       <motion.section
         id="work"
-        className="h-screen w-[80vw] flex flex-col items-center justify-center"
+        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div id="work-title" className="text-center">
+        <div id="work-title" className="text-center mb-10">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">
             My Works
           </h1>
@@ -187,7 +189,26 @@ export default function Main() {
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
         </div>
-        <div id="work-container"></div>
+        <div id="work-container" className="flex flex-col gap-8">
+          <div className="w-full flex items-center justify-between border border-yellow-300">
+            <div className="w-[50%] h-full border border-white">
+              <Image
+                src="/works/valorant_profiler/vp1.png"
+                alt="Valorant profiler image 1"
+                width={500}
+                height={500}
+              />
+            </div>
+            <div className="w-[50%] h-full border border-green-400">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                delectus, in quo, quasi tempore praesentium nesciunt, veniam
+                similique earum debitis incidunt? Labore laudantium tempore
+                perspiciatis accusantium ut blanditiis non. Exercitationem!
+              </p>
+            </div>
+          </div>
+        </div>
       </motion.section>
     </>
   );

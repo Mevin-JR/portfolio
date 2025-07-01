@@ -1,6 +1,7 @@
 import { Aldrich } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import Cursor from "@/components/cursor";
 
 const aldrich = Aldrich({
   variable: "--font-aldrich",
@@ -14,10 +15,18 @@ export const metadata = {
     "Hi! I'm Mevin - a full-stack developer, new to the scene but passionate about building great software. Check out my porfolio to see what I've been up to.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-192x192.png", type: "image/png", sizes: "192x192" },
-      { url: "/favicon-512x512.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicons/favicon.ico", sizes: "any" },
+      { url: "/favicons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      {
+        url: "/favicons/favicon-192x192.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+      {
+        url: "/favicons/favicon-512x512.png",
+        type: "image/png",
+        sizes: "512x512",
+      },
     ],
   },
 };
@@ -25,7 +34,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${aldrich.variable} antialiased`}>
+      <body className={`${aldrich.variable} antialiased cursor-none`}>
+        <Cursor />
         {children}
         <Toaster position="bottom-center" />
       </body>

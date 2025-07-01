@@ -87,7 +87,7 @@ export default function ResumeBtn() {
     <>
       <div id="resume" className="relative inline-block overflow-hidden group">
         <button
-          className="relative z-10 flex gap-3 items-center justify-center rounded px-5 py-3 border border-white cursor-pointer text-white font-medium
+          className="relative z-10 flex gap-3 items-center justify-center rounded px-5 py-3 border border-white text-white font-medium
                      hover:text-black transition-colors duration-300"
           onClick={toggleShowResume}
         >
