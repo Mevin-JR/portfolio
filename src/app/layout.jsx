@@ -34,7 +34,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${aldrich.variable} antialiased cursor-none`}>
+      <body className={`${aldrich.variable} antialiased`}>
         <Cursor />
         {children}
         <Toaster position="bottom-center" />

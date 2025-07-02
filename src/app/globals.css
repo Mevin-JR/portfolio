@@ -17,7 +17,7 @@
 body {
   user-select: none;
   -webkit-user-drag: none;
-  
+    
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-aldrich), monospace;

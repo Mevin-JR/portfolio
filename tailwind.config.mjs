@@ -24,11 +24,16 @@ export default {
           "0%": { transform: "translateY(1%)" },
           "100%": { transform: "translateY(-1%)" },
         },
+        ripple: {
+          "0%": { transform: "scale(0.5)", opacity: "0.6" },
+          "100%": { transform: "scale(2.5)", opacity: "0" },
+        },
       },
       animation: {
         float_up: "float_up 30s linear infinite",
         arrow_down: "arrow_down 0.5s ease-in-out infinite alternate",
         bobbing: "bobbing 1.5s ease-in-out infinite alternate",
+        ripple: "ripple 0.5s ease-out forwards",
       },
     },
   },
