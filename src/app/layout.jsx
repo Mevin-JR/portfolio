@@ -35,8 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${aldrich.variable} antialiased`}>
-        // TODO: Change this into the something more robust, like
-        'window.innerWidth' check inside the component
+        {/* TODO: Change this into the something more robust, like 'window.innerWidth' check inside the component */}
         <div className="hidden md:block">
           <Cursor />
         </div>

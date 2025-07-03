@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import ResumeBtn from "./resumeBtn";
 import Socials from "./socials";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Main() {
   const skills = [
@@ -28,6 +29,49 @@ export default function Main() {
     { name: "Flask", icon: "/icons/tech/Flask.png" },
     { name: "R", icon: "/icons/tech/R.png" },
     { name: "Figma", icon: "/icons/tech/Figma.png" },
+  ];
+
+  const works = [
+    {
+      name: "Valorant Profiler",
+      color: "#FF9365",
+      gradient: "/gradients/orange.png",
+      description: `<p>
+                  Valorant Profiler is a desktop application designed to manage
+                  and track Valorant player accounts. It integrates with the
+                  Valorant API to fetch real-time player statistics, match
+                  history, and performance data. The app aims to provide players
+                  with an organized dashboard to monitor their progress and
+                  compare stats across multiple accounts. It's currently under
+                  development and scheduled to release soon.
+                </p>
+                <p>
+                  Disclaimer: This application is not associated with,
+                  affiliated with, or endorsed by Riot Games, Inc.
+                </p>`,
+      /* 
+       TODO: Make this work with multiple images, user must be able to click and view multiple images of the same work
+      */
+      images: ["/works/valorant_profiler/2.png"],
+      tags: [
+        "HTML",
+        "CSS",
+        "Bootstrap",
+        "JavaScript",
+        "Electron",
+        "Firebase",
+        "Express",
+        "Git",
+      ].map((tag) => ({
+        tagName: tag,
+        tagIcon: skills.find((skill) => skill.name === tag)?.icon,
+      })),
+      github: "https://github.com/Mevin-JR/Valorant-Profiler",
+      liveDemo: {
+        enabled: false,
+        demoLink: "",
+      },
+    },
   ];
 
   return (
@@ -181,7 +225,7 @@ export default function Main() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div id="work-title" className="text-center mb-10">
+        <div id="work-title" className="text-center">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">
             My Works
           </h1>
@@ -189,25 +233,124 @@ export default function Main() {
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
         </div>
-        <div id="work-container" className="flex flex-col gap-8">
-          <div className="w-full flex items-center justify-between border border-yellow-300">
-            <div className="w-[50%] h-full border border-white">
-              <Image
-                src="/works/valorant_profiler/vp1.png"
-                alt="Valorant profiler image 1"
-                width={500}
-                height={500}
-              />
-            </div>
-            <div className="w-[50%] h-full border border-green-400">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                delectus, in quo, quasi tempore praesentium nesciunt, veniam
-                similique earum debitis incidunt? Labore laudantium tempore
-                perspiciatis accusantium ut blanditiis non. Exercitationem!
-              </p>
-            </div>
-          </div>
+        <div
+          id="work-container"
+          className="sm:mt-10 flex flex-col gap-40 sm:gap-30 md:gap-20"
+        >
+          {works.map(
+            (
+              {
+                name,
+                color,
+                gradient,
+                description,
+                images,
+                tags,
+                github,
+                liveDemo,
+              },
+              index
+            ) => (
+              <div
+                key={name}
+                className={`mt-20 sm:mt-0 w-full h-[500px] flex flex-col gap-10 md:gap-0 ${
+                  index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+                } items-center justify-around`}
+              >
+                <div className="w-full md:w-[45%] h-full flex flex-col gap-3 justify-center">
+                  <div className="flex gap-2 items-center">
+                    <div
+                      className="h-1 w-5 rounded-full"
+                      style={{ backgroundColor: color }}
+                    />
+                    <h3
+                      className="text-lg md:text-xl lg:text-2xl"
+                      style={{ color: color }}
+                    >
+                      {name}
+                    </h3>
+                  </div>
+                  <div
+                    className="flex flex-col gap-2 text-gray-400 text-xs lg:text-sm xl:text-base"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
+                  <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2">
+                    {tags.map(({ tagName, tagIcon }, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-center items-center gap-1 lg:gap-2 p-1 xl:p-2
+                        bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                      >
+                        <Image
+                          src={tagIcon}
+                          alt={tagName}
+                          height={15}
+                          width={15}
+                        />
+                        <h3 className="text-xs lg:text-sm">{tagName}</h3>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between gap-4 sm:justify-normal text-sm lg:text-base">
+                    <div
+                      className="border border-cyan-400 p-2 lg:p-3 rounded-lg bg-cyan-400/10 text-cyan-400 cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+                      onClick={() =>
+                        window.open(github, "_blank", "noopener,noreferrer")
+                      }
+                    >
+                      <p>View on Github</p>
+                    </div>
+                    {liveDemo.enabled ? (
+                      <div
+                        className="flex gap-1 cursor-pointer"
+                        style={{ color: color }}
+                      >
+                        <p>Live Demo</p>
+                        <ArrowUpRight />
+                      </div>
+                    ) : (
+                      <div
+                        className="flex gap-1 cursor-not-allowed"
+                        style={{ color: "gray" }}
+                      >
+                        <p>Live Demo</p>
+                        <ArrowUpRight />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div
+                  className="w-full md:w-[45%] xl:w-[40%] h-full md:h-[400px] p-2 lg:p-4
+                  bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  <div
+                    className="relative h-[200px] sm:h-[250px] md:h-full overflow-hidden rounded
+                      flex flex-col gap-6 items-center bg-cover group"
+                    style={{ backgroundImage: `url(${gradient})` }}
+                  >
+                    <h3
+                      className="sm:mt-5 md:mt-10 p-3 text-xs sm:text-sm lg:text-base text-center transition-all duration-300 group-hover:blur-sm"
+                      style={{ color: color }}
+                    >
+                      Your ultimate companion for Valorant — organize accounts,
+                      view real-time stats, and share profiles without the
+                      hassle.
+                    </h3>
+                    <Image
+                      src={images.pop()}
+                      alt="Valorant profiler images"
+                      width={500}
+                      height={500}
+                      className={`h-[150px] w-[250px] sm:h-[200px] sm:w-[300px] lg:h-[250px] lg:w-[350px] xl:h-[350px] xl:w-[500px]
+                        absolute top-[50%] -rotate-3 rounded-lg transition-all duration-300 
+                        group-hover:-translate-y-1/2 group-hover:rotate-0`}
+                      style={{ boxShadow: `0 0 30px ${color}` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </motion.section>
     </>
