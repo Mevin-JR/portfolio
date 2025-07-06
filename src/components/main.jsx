@@ -433,6 +433,7 @@ export default function Main() {
             Timeline of <span className="text-cyan-400">Growth</span>
           </h2>
         </div>
+        <div></div>
       </motion.section>
     </>
   );
