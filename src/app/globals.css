@@ -16,9 +16,17 @@
 
 body {
   user-select: none;
-  -webkit-user-drag: none;
     
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-aldrich), monospace;
+}
+
+body::selection {
+  color: black;
+  background-color: rgba(0, 255, 255, 0.8);
+}
+
+img {
+  -webkit-user-drag: none;
 }

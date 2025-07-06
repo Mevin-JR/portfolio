@@ -27,8 +27,10 @@ export default function Main() {
     { name: "Java", icon: "/icons/tech/Java.png" },
     { name: "Python", icon: "/icons/tech/Python.png" },
     { name: "Flask", icon: "/icons/tech/Flask.png" },
+    { name: "Scikit", icon: "/icons/tech/Scikit.png" },
     { name: "R", icon: "/icons/tech/R.png" },
     { name: "Figma", icon: "/icons/tech/Figma.png" },
+    { name: "AWS", icon: "/icons/tech/AWS.png" },
   ];
 
   const works = [
@@ -49,6 +51,9 @@ export default function Main() {
                   Disclaimer: This application is not associated with,
                   affiliated with, or endorsed by Riot Games, Inc.
                 </p>`,
+      caption: `Your ultimate companion for Valorant — organize accounts,
+                view real-time stats, and share profiles without the
+                hassle.`,
       /* 
        TODO: Make this work with multiple images, user must be able to click and view multiple images of the same work
       */
@@ -67,6 +72,65 @@ export default function Main() {
         tagIcon: skills.find((skill) => skill.name === tag)?.icon,
       })),
       github: "https://github.com/Mevin-JR/Valorant-Profiler",
+      liveDemo: {
+        enabled: false,
+        demoLink: "",
+      },
+    },
+    {
+      name: "Chess Game",
+      color: "#E3C16F",
+      gradient: "/gradients/yellow.png",
+      description: `<p>
+                Chess Game is a custom-built chess application developed using Python and Pygame, 
+                with all game logic implemented from scratch. The project focuses on recreating 
+                the full chess experience — including movement rules, check/checkmate detection, 
+                and turn-based logic — in an interactive and visually intuitive way.
+                </p>`,
+      caption: `A classic game, reimagined from scratch, custom-built chess powered by Python and Pygame.`,
+      images: ["/works/chess_game/2.png"],
+      tags: ["Python"].map((tag) => ({
+        tagName: tag,
+        tagIcon: skills.find((skill) => skill.name === tag)?.icon,
+      })),
+      github: "https://github.com/Mevin-JR/ChessGame",
+      liveDemo: {
+        enabled: false,
+        demoLink: "",
+      },
+    },
+    {
+      name: "Aura Shield",
+      color: "#0081BF",
+      gradient: "/gradients/cyan.png",
+      description: `<p>
+                Aura Shield is a web application designed to detect and analyze potential 
+                toxins or harmful substances in cosmetic products. Using machine learning 
+                algorithms, the app identifies unsafe ingredients and presents results 
+                through a user-friendly, intuitive interface — helping users make safer
+                skincare choices.
+                </p>
+                <p>
+                It also features a built-in cosmetic store and a face detection model that 
+                analyzes your skin tone to recommend suitable products. Users can view detailed 
+                ingredient breakdowns before purchasing, ensuring safer and more informed choices.
+                </p>
+                `,
+      caption: `Know what you’re putting on your skin, ML-powered cosmetic analysis at your fingertips.`,
+      images: ["/works/aura_shield/3.png"],
+      tags: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bootstrap",
+        "Python",
+        "Scikit",
+        "Flask",
+      ].map((tag) => ({
+        tagName: tag,
+        tagIcon: skills.find((skill) => skill.name === tag)?.icon,
+      })),
+      github: "https://github.com/Mevin-JR/AuraShield",
       liveDemo: {
         enabled: false,
         demoLink: "",
@@ -225,7 +289,8 @@ export default function Main() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div id="work-title" className="text-center">
+        {/* TODO: Motion for each work row */}
+        <div id="work-title" className="text-center mb-10 sm:mb-20">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">
             My Works
           </h1>
@@ -235,7 +300,7 @@ export default function Main() {
         </div>
         <div
           id="work-container"
-          className="sm:mt-10 flex flex-col gap-40 sm:gap-30 md:gap-20"
+          className="flex flex-col gap-40 sm:gap-30 md:gap-20"
         >
           {works.map(
             (
@@ -244,6 +309,7 @@ export default function Main() {
                 color,
                 gradient,
                 description,
+                caption,
                 images,
                 tags,
                 github,
@@ -253,7 +319,7 @@ export default function Main() {
             ) => (
               <div
                 key={name}
-                className={`mt-20 sm:mt-0 w-full h-[500px] flex flex-col gap-10 md:gap-0 ${
+                className={`w-full flex flex-col gap-10 md:gap-0 ${
                   index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
                 } items-center justify-around`}
               >
@@ -325,16 +391,14 @@ export default function Main() {
                 >
                   <div
                     className="relative h-[200px] sm:h-[250px] md:h-full overflow-hidden rounded
-                      flex flex-col gap-6 items-center bg-cover group"
+                      flex flex-col gap-6 items-center bg-cover group group-hover:overflow-visible"
                     style={{ backgroundImage: `url(${gradient})` }}
                   >
                     <h3
-                      className="sm:mt-5 md:mt-10 p-3 text-xs sm:text-sm lg:text-base text-center transition-all duration-300 group-hover:blur-sm"
+                      className="mt-2 sm:mt-5 md:mt-10 p-3 text-xs sm:text-sm lg:text-base text-center transition-all duration-300 group-hover:blur-sm"
                       style={{ color: color }}
                     >
-                      Your ultimate companion for Valorant — organize accounts,
-                      view real-time stats, and share profiles without the
-                      hassle.
+                      {caption}
                     </h3>
                     <Image
                       src={images.pop()}
@@ -351,6 +415,23 @@ export default function Main() {
               </div>
             )
           )}
+        </div>
+      </motion.section>
+      <motion.section
+        id="experience"
+        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
+        initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <div id="experience-title" className="text-center mb-10 sm:mb-20">
+          <h1 className="text-gray-400 text-md md:text-lg uppercase">
+            My Experience
+          </h1>
+          <h2 className="text-2xl md:text-4xl font-bold">
+            Timeline of <span className="text-cyan-400">Growth</span>
+          </h2>
         </div>
       </motion.section>
     </>
