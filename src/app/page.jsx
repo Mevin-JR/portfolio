@@ -1,5 +1,3 @@
-"use client";
-
 // FIXME: Dirty fix for an annoying issue involving some version incompatibilities,
 // Change into a better fix (or check if its resolved by nextjs & affected libs)
 if (!Promise.withResolvers) {
@@ -16,11 +14,8 @@ if (!Promise.withResolvers) {
 import Main from "@/components/main";
 import Navbar from "@/components/navbar";
 import OrbColors from "@/components/orbColors";
-import { useState } from "react";
 
 export default function Home() {
-  const [accentColor, setAccentColor] = useState("#22d3ee");
-
   return (
     <>
       {/* Background Grid Layer */}
