@@ -1,3 +1,7 @@
+"use client";
+
+// FIXME: Dirty fix for an annoying issue involving some version incompatibilities,
+// Change into a better fix (or check if its resolved by nextjs & affected libs)
 if (!Promise.withResolvers) {
   Promise.withResolvers = function () {
     let resolve, reject;
@@ -11,8 +15,12 @@ if (!Promise.withResolvers) {
 
 import Main from "@/components/main";
 import Navbar from "@/components/navbar";
+import OrbColors from "@/components/orbColors";
+import { useState } from "react";
 
 export default function Home() {
+  const [accentColor, setAccentColor] = useState("#22d3ee");
+
   return (
     <>
       {/* Background Grid Layer */}
@@ -27,14 +35,10 @@ export default function Home() {
 
       {/* Foreground Content */}
       <Navbar />
-      <main className="flex flex-col items-center justify-center min-h-screen">
+      <main className="relative flex flex-col items-center justify-center min-h-screen">
         <Main />
+        <OrbColors />
       </main>
-      {/* <div className="mt-10 text-white text-center">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <p key={i}>Scroll test line {i + 1}</p>
-        ))}
-      </div> */}
     </>
   );
 }

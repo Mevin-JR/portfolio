@@ -1,7 +1,8 @@
 import { Aldrich } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import Cursor from "@/components/cursor";
+import Orb from "@/components/orb";
+import { AccentColorProvider } from "@/context/accentColorContext";
 
 const aldrich = Aldrich({
   variable: "--font-aldrich",
@@ -35,12 +36,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${aldrich.variable} antialiased`}>
-        {/* TODO: Change this into the something more robust, like 'window.innerWidth' check inside the component */}
-        <div className="hidden md:block">
-          <Cursor />
-        </div>
-        {children}
-        <Toaster position="bottom-center" />
+        <AccentColorProvider>
+          <div className="hidden md:block">
+            {/* TODO: Change this into the something more robust, like 'window.innerWidth' check inside the component */}
+            <Orb />
+          </div>
+          {children}
+          <Toaster position="bottom-center" />
+        </AccentColorProvider>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import "./tooltip.css";
 
 export default function Tooltip({
   children,
-  text,
+  text = "This is a tooltip",
   bgColor = "#000",
   textColor = "#fff",
   position = "top",

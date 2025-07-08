@@ -23,6 +23,7 @@
     opacity: 0;
     transition: opacity 0.3s, visibility 0.3s;
     font-size: 14px;
+    text-align: center;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -36,4 +37,18 @@
 
 .bottom {
     top: 110%;
+}
+
+.left {
+  top: 50%;
+  right: 200%;
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.right {
+  top: 50%;
+  left: 200%;
+  right: auto;
+  transform: translateY(-50%);
 }

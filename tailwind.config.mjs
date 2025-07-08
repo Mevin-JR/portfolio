@@ -28,12 +28,17 @@ export default {
           "0%": { transform: "scale(0.5)", opacity: "0.6" },
           "100%": { transform: "scale(2.5)", opacity: "0" },
         },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "transalteY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         float_up: "float_up 30s linear infinite",
         arrow_down: "arrow_down 0.5s ease-in-out infinite alternate",
         bobbing: "bobbing 1.5s ease-in-out infinite alternate",
         ripple: "ripple 0.5s ease-out forwards",
+        fadeIn: "fadeIn 0.3s ease-out forwards",
       },
     },
   },
