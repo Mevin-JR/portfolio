@@ -5,7 +5,8 @@ import { motion } from "motion/react";
 import ResumeBtn from "./resumeBtn";
 import Socials from "./socials";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
+import ScrollProgressBar from "./scrollProgressBar";
 
 export default function Main() {
   const skills = [
@@ -402,7 +403,7 @@ export default function Main() {
                     </h3>
                     <Image
                       src={images.pop()}
-                      alt="Valorant profiler images"
+                      alt="Work Images"
                       width={500}
                       height={500}
                       className={`h-[150px] w-[250px] sm:h-[200px] sm:w-[300px] lg:h-[250px] lg:w-[350px] xl:h-[350px] xl:w-[500px]
@@ -433,7 +434,65 @@ export default function Main() {
             Timeline of <span className="text-cyan-400">Growth</span>
           </h2>
         </div>
-        <div></div>
+        <div id="experience-container" className="flex flex-col gap-10 w-full">
+          <div className="flex w-full justify-around">
+            <div className="flex flex-col gap-3 text-gray-400 text-sm basis-[20%]">
+              <h3>SEP 2020 - Present</h3>
+              <h2 className="text-white text-2xl">Freelance</h2>
+              <div className="flex gap-2 items-center">
+                <MapPin height={18} width={18} />
+                <h3>Remote Work</h3>
+              </div>
+            </div>
+            <div className="basis-[50%] flex flex-col gap-4 text-gray-400 text-sm">
+              <p>
+                Led end-to-end development for MYMC, a prominent Indian
+                Minecraft server. Took charge of the entire technical lifecycle,
+                from planning, development, testing, deployment, and maintenance
+                of the MYMC server infrastructure. Helped grow the community to
+                over <span className="text-white">2,000 members</span> and
+                maintained high retention with{" "}
+                <span className="text-white">100+ daily active players</span>{" "}
+                through consistent performance and feature updates.
+              </p>
+              <p>
+                Built{" "}
+                <span className="text-white">Java-based server-side mods</span>{" "}
+                tailored to unique gameplay requirements such as economy
+                systems, mini-games, roleplay elements, custom items, and
+                administrative tools. Wrote efficient, modular code using
+                <span className="text-white"> Spigot/Bukkit APIs</span>,
+                enabling easy updates and integration with existing systems.
+                Regularly handled bug fixes, version compatibility (across
+                Minecraft updates), and{" "}
+                <span className="text-white">
+                  plugin optimization to reduce server load.
+                </span>
+              </p>
+              <p>
+                Served as the lead developer and infrastructure strategist for a
+                major Minecraft server with over{" "}
+                <span className="text-white">15,000 unique players</span> across
+                multiple game modes. Scaled server capacity across multiple
+                instances and integrated database solutions for cross-server
+                player data. Managed deployment workflows, including{" "}
+                <span className="text-white">Git-based version control</span>{" "}
+                and <span className="text-white">CI/CD pipelines </span>to roll
+                out updates quickly and reliably.
+              </p>
+              <p>
+                Created integrations with{" "}
+                <span className="text-white">third-party APIs</span>, databases
+                (e.g., MySQL), and in-game dashboards to track player stats,
+                economy, and achievements. Developed secure systems for player
+                authentication, anti-cheat, and mod compatibility. Ensured
+                consistent gameplay across all devices (Java Edition and Bedrock
+                compatibility when needed), working around protocol and platform
+                differences.
+              </p>
+            </div>
+          </div>
+        </div>
       </motion.section>
     </>
   );
