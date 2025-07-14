@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Orb from "@/components/orb";
 import { AccentColorProvider } from "@/context/accentColorContext";
+import SessionWrapper from "@/components/sessionWrapper";
 
 const aldrich = Aldrich({
   variable: "--font-aldrich",
@@ -41,7 +42,7 @@ export default function RootLayout({ children }) {
             {/* TODO: Change this into the something more robust, like 'window.innerWidth' check inside the component */}
             <Orb />
           </div>
-          {children}
+          <SessionWrapper>{children}</SessionWrapper>
           <Toaster position="bottom-center" />
         </AccentColorProvider>
       </body>
