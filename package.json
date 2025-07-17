@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "firebase": "^11.10.0",
     "lucide-react": "^0.518.0",
     "motion": "^12.18.1",
     "next": "15.1.8",
@@ -16,7 +17,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
-    "react-pdf": "^9.2.1"
+    "react-pdf": "^9.2.1",
+    "tailwind-scrollbar-hide": "^4.0.0"
   },
   "devDependencies": {
     "postcss": "^8",
