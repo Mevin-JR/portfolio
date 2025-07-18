@@ -29,7 +29,7 @@ export default function LinkEditPopup({
   return (
     <div
       className="w-screen h-screen absolute top-0 left-0 
-    bg-black/10 backdrop-blur-[2px] z-[999]
+    bg-black/10 backdrop-blur-sm z-[999]
     flex justify-center items-center"
       onClick={() => setShowLinkEditPopup(false)}
     >
