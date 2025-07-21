@@ -1,16 +1,3 @@
-// FIXME: Dirty fix for an annoying issue involving some version incompatibilities,
-// Change into a better fix (or check if its resolved by nextjs & affected libs)
-if (!Promise.withResolvers) {
-  Promise.withResolvers = function () {
-    let resolve, reject;
-    const promise = new Promise((res, rej) => {
-      resolve = res;
-      reject = rej;
-    });
-    return { promise, resolve, reject };
-  };
-}
-
 import BgDotGrid from "@/components/bgDotGrid";
 import Main from "@/components/main";
 import Navbar from "@/components/navbar";
