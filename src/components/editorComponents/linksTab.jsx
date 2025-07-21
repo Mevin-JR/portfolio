@@ -1,19 +1,16 @@
 "use client";
+
 import { File as FileIcon, Info } from "lucide-react";
 import LinkComponent from "./linkComponent";
-
-import { pdfjs, Document, Page } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 import { useEffect, useRef, useState } from "react";
 import { storage } from "@/firebaseConfig";
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import toast from "react-hot-toast";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+import dynamic from "next/dynamic";
+const EditorResumeDisplay = dynamic(() => import("./editorResumeDisplay"), {
+  ssr: false,
+});
 
 export default function LinksTab() {
   const inputRef = useRef(null);
@@ -178,9 +175,7 @@ export default function LinksTab() {
                 </div>
               </div>
             </div>
-            <Document file={resumeFile}>
-              <Page pageNumber={1} scale={0.7} />
-            </Document>
+            <EditorResumeDisplay resumeFile={resumeFile} />
           </div>
         </div>
       </div>

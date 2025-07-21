@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "motion/react";
-
-import ResumeBtn from "./resumeBtn";
 import Socials from "./socials";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ResumeBtn = dynamic(() => import("./resumeBtn"), {
+  ssr: false,
+});
 
 export default function Main() {
   const skills = [
