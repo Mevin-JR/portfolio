@@ -11,22 +11,27 @@ export default function LinkComponent({ linkName = "Default" }) {
   const [reloadLinks, setReloadLinks] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const link = links[linkName.toLowerCase()];
+
   const fetchLinks = async () => {
     setLoading(true);
-    const ref = doc(db, "links_and_resume", "links");
-    const snap = await getDoc(ref);
-    if (snap.exists()) setLinks(snap.data());
+    try {
+      const ref = doc(db, "links_and_resume", "links");
+      const snap = await getDoc(ref);
+      if (snap.exists()) setLinks(snap.data());
 
-    setTimeout(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    } catch (error) {
+      console.error("Error fetching links from firestore:", error);
       setLoading(false);
-    }, 500);
+    }
   };
 
   useEffect(() => {
     fetchLinks();
   }, [reloadLinks]);
-
-  const link = links[linkName.toLowerCase()];
 
   return (
     <div className="flex flex-col gap-2 w-fit">
