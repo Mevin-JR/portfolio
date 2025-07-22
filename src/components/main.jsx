@@ -4,12 +4,12 @@ import { motion } from "motion/react";
 import Socials from "./socials";
 import Image from "next/image";
 import { ArrowUpRight, MapPin } from "lucide-react";
-import dynamic from "next/dynamic";
+import ScrollProgressBar from "./scrollProgressBar";
 
+import dynamic from "next/dynamic";
 const ResumeBtn = dynamic(() => import("./resumeBtn"), {
   ssr: false,
 });
-import ScrollProgressBar from "./scrollProgressBar";
 
 export default function Main() {
   const skills = [
