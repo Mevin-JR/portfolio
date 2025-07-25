@@ -4,8 +4,17 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import Tooltip from "./tooltip";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { fetchLinksRealtime } from "@/helperFunctions";
 
 export default function Socials() {
+  const [links, setLinks] = useState({});
+
+  useEffect(() => {
+    const unsub = fetchLinksRealtime(setLinks);
+    return () => unsub();
+  }, []);
+
   const socials = [
     {
       name: "Github",
@@ -18,7 +27,7 @@ export default function Socials() {
           className="aspect-square"
         />
       ),
-      target: "https://github.com/Mevin-JR/",
+      target: `${links.github}`,
     },
     {
       name: "LinkedIn",
@@ -31,12 +40,12 @@ export default function Socials() {
           className="aspect-square"
         />
       ),
-      target: "https://www.linkedin.com/in/mevin-rejimon-b1551b337/",
+      target: `${links.linkedin}`,
     },
     {
       name: "Mail",
       icon: <Mail height={32} width={32} className="aspect-square" />,
-      target: "copy:jrmevin@gmail.com",
+      target: `${links.email}`,
     },
   ];
 

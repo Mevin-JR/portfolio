@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Download, Minus, Plus, RotateCcw, View } from "lucide-react";
 import { useEffect, useState } from "react";
 import Tooltip from "./tooltip";
+import { fetchLatestResume } from "@/helperFunctions";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -22,6 +23,8 @@ export default function ResumeBtn() {
   const [maxScale, setMaxScale] = useState(1.4);
   const [minScale, setMinScale] = useState(0.8);
 
+  const [resumeURL, setResumeURL] = useState("");
+
   // Smaller Devices (768px)
   const SCALE_SM = 0.5;
   const MIN_SCALE_SM = 0.3;
@@ -31,6 +34,11 @@ export default function ResumeBtn() {
   const SCALE_MD = 0.8;
   const MIN_SCALE_MD = 0.4;
   const MAX_SCALE_MD = 1.2;
+
+  useEffect(() => {
+    const unsub = fetchLatestResume(setResumeURL);
+    return () => unsub();
+  }, []);
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
@@ -83,6 +91,21 @@ export default function ResumeBtn() {
     setResumeScale(resumeScaleConst);
   };
 
+  const handleDownload = async () => {
+    const response = await fetch(resumeURL);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Mevin_Resume.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <div id="resume" className="relative inline-block overflow-hidden group">
@@ -115,7 +138,7 @@ export default function ResumeBtn() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
             >
-              <Document file="/Mevin_JR_Resume.pdf">
+              <Document file={resumeURL}>
                 <Page pageNumber={1} scale={resumeScale} />
               </Document>
               <motion.div
@@ -158,13 +181,12 @@ export default function ResumeBtn() {
                 </ul>
                 <Tooltip text="Download">
                   <div className="z-10 bg-gray-900 rounded-2xl">
-                    <a
+                    <button
                       className="flex items-center justify-center w-full h-full p-3 cursor-pointer transition-colors duration-300 hover:bg-white/25"
-                      href="/Mevin_JR_Resume.pdf"
-                      download
+                      onClick={handleDownload}
                     >
                       <Download />
-                    </a>
+                    </button>
                   </div>
                 </Tooltip>
               </motion.div>
