@@ -6,9 +6,11 @@ import { pdfjs, Document, Page } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { useEffect, useRef, useState } from "react";
-import { storage } from "@/firebaseConfig";
+import { db, storage } from "@/firebaseConfig";
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import toast from "react-hot-toast";
+import { doc, updateDoc } from "firebase/firestore";
+import { fetchLatestResume } from "@/helperFunctions";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -18,34 +20,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export default function LinksTab() {
   const inputRef = useRef(null);
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [resumeFile, setResumeFile] = useState();
-
-  const fetchLatestResume = async () => {
-    try {
-      const folderRef = ref(storage, "resume/");
-
-      const allFiles = await listAll(folderRef);
-      const sortedFiles = allFiles.items.sort((a, b) => {
-        const extractTimestamp = (name) => {
-          const match = name.match(/Mevin_Resume_(\d+)\.pdf$/);
-          if (!match) return 0;
-          return parseInt(match[1], 10);
-        };
-
-        return extractTimestamp(b.name) - extractTimestamp(a.name);
-      });
-      const latestResume = sortedFiles[0];
-      const url = await getDownloadURL(latestResume);
-
-      setResumeFile(url);
-    } catch (error) {
-      console.error("Error fetching resume from storage:", error);
-    }
-  };
+  const [resumeFile, setResumeFile] = useState("");
 
   useEffect(() => {
-    fetchLatestResume();
-  }, [resumeFile]);
+    const unsub = fetchLatestResume(setResumeFile);
+    return () => unsub();
+  }, []);
 
   const handleResumeUpload = () => {
     if (inputRef.current) {
@@ -60,12 +40,25 @@ export default function LinksTab() {
     }
   };
 
+  const updateResumeURL = async (url) => {
+    try {
+      const urlRef = doc(db, "links_and_resume", "resume");
+      await updateDoc(urlRef, {
+        latest: url,
+        updatedAt: new Date(),
+      });
+    } catch (error) {
+      console.error("Error updating resume url:", error);
+    }
+  };
+
   const uploadResumeToStorage = async (file) => {
     try {
       const resumeRef = ref(storage, `resume/${file.name}`);
       await uploadBytes(resumeRef, file);
 
-      fetchLatestResume();
+      const url = await getDownloadURL(resumeRef);
+      await updateResumeURL(url);
     } catch (error) {
       console.error("Error trying to upload resume:", error);
     }
@@ -87,16 +80,7 @@ export default function LinksTab() {
       });
     }
 
-    const timestamp = Date.now();
-    const renamedFile = new File(
-      [uploadedFile],
-      `Mevin_Resume_${timestamp}.pdf`,
-      {
-        type: uploadedFile.type,
-      }
-    );
-
-    uploadResumeToStorage(renamedFile);
+    uploadResumeToStorage(uploadedFile);
     removeResume();
   };
 

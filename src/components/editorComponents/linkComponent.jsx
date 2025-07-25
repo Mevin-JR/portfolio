@@ -1,9 +1,8 @@
 import { PenLine } from "lucide-react";
 import Tooltip from "../tooltip";
-import { db } from "@/firebaseConfig";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import LinkEditPopup from "./linkEditPopup";
+import { fetchLinks } from "@/helperFunctions";
 
 export default function LinkComponent({ linkName = "Default" }) {
   const [links, setLinks] = useState({});
@@ -13,24 +12,26 @@ export default function LinkComponent({ linkName = "Default" }) {
 
   const link = links[linkName.toLowerCase()];
 
-  const fetchLinks = async () => {
+  // TODO: Looks like shit rn, fix later
+  const fetchLinksWithLoading = () => {
     setLoading(true);
-    try {
-      const ref = doc(db, "links_and_resume", "links");
-      const snap = await getDoc(ref);
-      if (snap.exists()) setLinks(snap.data());
+    fetchLinks()
+      .then((data) => {
+        setLinks(data);
 
-      setTimeout(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      })
+      .catch((error) => {
+        console.error("Error fetching links from firestore:", error);
         setLoading(false);
-      }, 500);
-    } catch (error) {
-      console.error("Error fetching links from firestore:", error);
-      setLoading(false);
-    }
+      });
+    setReloadLinks(false);
   };
 
   useEffect(() => {
-    fetchLinks();
+    fetchLinksWithLoading();
   }, [reloadLinks]);
 
   return (
