@@ -8,6 +8,7 @@ const tabs = [
   { key: "about", label: "About me" },
   { key: "tools", label: "Tools & Tech" },
   { key: "projects", label: "Projects/Works" },
+  { key: "experience", label: "My Experience" },
 ];
 
 export default function EditorNav({ activeTab, setActiveTab }) {

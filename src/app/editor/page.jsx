@@ -2,7 +2,8 @@
 
 import BgDotGrid from "@/components/bgDotGrid";
 import EditorNav from "@/components/editorComponents/editorNav";
-import LinksTab from "@/components/editorComponents/linksTab";
+import ExperienceTab from "@/components/editorComponents/experienceTab/experienceTab";
+import LinksTab from "@/components/editorComponents/linksTab/linksTab";
 import Navbar from "@/components/navbar";
 import OrbColors from "@/components/orbColors";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -11,6 +12,7 @@ import { useState } from "react";
 
 const tabComponents = {
   links: LinksTab,
+  experience: ExperienceTab,
 };
 
 export default function EditorPage() {

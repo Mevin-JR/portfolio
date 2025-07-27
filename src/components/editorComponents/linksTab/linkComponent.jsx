@@ -1,8 +1,8 @@
 import { PenLine } from "lucide-react";
-import Tooltip from "../tooltip";
 import { useEffect, useState } from "react";
 import LinkEditPopup from "./linkEditPopup";
 import { fetchLinks } from "@/helperFunctions";
+import Tooltip from "@/components/tooltip";
 
 export default function LinkComponent({ linkName = "Default" }) {
   const [links, setLinks] = useState({});
