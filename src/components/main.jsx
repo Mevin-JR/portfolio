@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Socials from "./socials";
 import Image from "next/image";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Sparkle } from "lucide-react";
 import ScrollProgressBar from "./scrollProgressBar";
 
 import dynamic from "next/dynamic";
@@ -447,52 +447,260 @@ export default function Main() {
                 <h3>Remote Work</h3>
               </div>
             </div>
-            <div className="basis-[50%] flex flex-col gap-4 text-gray-400 text-sm">
-              <p>
-                Led end-to-end development for MYMC, a prominent Indian
-                Minecraft server. Took charge of the entire technical lifecycle,
-                from planning, development, testing, deployment, and maintenance
-                of the MYMC server infrastructure. Helped grow the community to
-                over <span className="text-white">2,000 members</span> and
-                maintained high retention with{" "}
-                <span className="text-white">100+ daily active players</span>{" "}
-                through consistent performance and feature updates.
-              </p>
-              <p>
-                Built{" "}
-                <span className="text-white">Java-based server-side mods</span>{" "}
-                tailored to unique gameplay requirements such as economy
-                systems, mini-games, roleplay elements, custom items, and
-                administrative tools. Wrote efficient, modular code using
-                <span className="text-white"> Spigot/Bukkit APIs</span>,
-                enabling easy updates and integration with existing systems.
-                Regularly handled bug fixes, version compatibility (across
-                Minecraft updates), and{" "}
-                <span className="text-white">
-                  plugin optimization to reduce server load.
-                </span>
-              </p>
-              <p>
-                Served as the lead developer and infrastructure strategist for a
-                major Minecraft server with over{" "}
-                <span className="text-white">15,000 unique players</span> across
-                multiple game modes. Scaled server capacity across multiple
-                instances and integrated database solutions for cross-server
-                player data. Managed deployment workflows, including{" "}
-                <span className="text-white">Git-based version control</span>{" "}
-                and <span className="text-white">CI/CD pipelines </span>to roll
-                out updates quickly and reliably.
-              </p>
-              <p>
-                Created integrations with{" "}
-                <span className="text-white">third-party APIs</span>, databases
-                (e.g., MySQL), and in-game dashboards to track player stats,
-                economy, and achievements. Developed secure systems for player
-                authentication, anti-cheat, and mod compatibility. Ensured
-                consistent gameplay across all devices (Java Edition and Bedrock
-                compatibility when needed), working around protocol and platform
-                differences.
-              </p>
+            <div className="basis-[55%] flex flex-col gap-4 text-gray-400 text-sm">
+              <h2 className="text-white text-xl">
+                Full-Stack Engineer | Java Developer
+              </h2>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Led end-to-end development for MYMC, a prominent Indian
+                  Minecraft server. Took charge of the entire technical
+                  lifecycle, from planning, development, testing, deployment,
+                  and maintenance of the MYMC server infrastructure. Helped grow
+                  the community to over{" "}
+                  <span className="text-white">2,000 members</span> and
+                  maintained high retention with{" "}
+                  <span className="text-white">100+ daily active players</span>{" "}
+                  through consistent performance and feature updates.
+                </p>
+              </div>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Built{" "}
+                  <span className="text-white">
+                    Java-based server-side mods
+                  </span>{" "}
+                  tailored to unique gameplay requirements such as economy
+                  systems, mini-games, roleplay elements, custom items, and
+                  administrative tools. Wrote efficient, modular code using
+                  <span className="text-white"> Spigot/Bukkit APIs</span>,
+                  enabling easy updates and integration with existing systems.
+                  Regularly handled bug fixes, version compatibility (across
+                  Minecraft updates), and{" "}
+                  <span className="text-white">
+                    plugin optimization to reduce server load.
+                  </span>
+                </p>
+              </div>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Served as the lead developer and infrastructure strategist for
+                  a major Minecraft server with over{" "}
+                  <span className="text-white">15,000 unique players</span>{" "}
+                  across multiple game modes. Scaled server capacity across
+                  multiple instances and integrated database solutions for
+                  cross-server player data. Managed deployment workflows,
+                  including{" "}
+                  <span className="text-white">Git-based version control</span>{" "}
+                  and <span className="text-white">CI/CD pipelines </span>to
+                  roll out updates quickly and reliably.
+                </p>
+              </div>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Created integrations with{" "}
+                  <span className="text-white">third-party APIs</span>,
+                  databases (e.g., MySQL), and in-game dashboards to track
+                  player stats, economy, and achievements. Developed secure
+                  systems for player authentication, anti-cheat, and mod
+                  compatibility. Ensured consistent gameplay across all devices
+                  (Java Edition and Bedrock compatibility when needed), working
+                  around protocol and platform differences.
+                </p>
+              </div>
+              <div className="flex gap-3 flex-wrap w-[90%]">
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Java
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  React.js
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Next.js
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Node.js
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Express
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Bootstrap
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Tailwind CSS
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Python
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Flask
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Firebase
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Github
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  AWS
+                </div>
+                <div
+                  className="px-4 py-2 text-white
+                bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
+                >
+                  Figma
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex w-full justify-around">
+            <div className="flex flex-col gap-3 text-gray-400 text-sm basis-[20%]">
+              <h3>JAN 2025 - APR 2025</h3>
+              <h2 className="text-white text-2xl">Zymo</h2>
+              <div className="flex gap-2 items-center">
+                <MapPin height={18} width={18} />
+                <h3>Remote Work</h3>
+              </div>
+            </div>
+            <div className="basis-[55%] flex flex-col gap-4 text-gray-400 text-sm">
+              <h2 className="text-white text-xl">
+                Intern Web Team Lead | Full-Stack Engineer
+              </h2>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Led end-to-end development for MYMC, a prominent Indian
+                  Minecraft server. Took charge of the entire technical
+                  lifecycle, from planning, development, testing, deployment,
+                  and maintenance of the MYMC server infrastructure. Helped grow
+                  the community to over{" "}
+                  <span className="text-white">2,000 members</span> and
+                  maintained high retention with{" "}
+                  <span className="text-white">100+ daily active players</span>{" "}
+                  through consistent performance and feature updates.
+                </p>
+              </div>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Built{" "}
+                  <span className="text-white">
+                    Java-based server-side mods
+                  </span>{" "}
+                  tailored to unique gameplay requirements such as economy
+                  systems, mini-games, roleplay elements, custom items, and
+                  administrative tools. Wrote efficient, modular code using
+                  <span className="text-white"> Spigot/Bukkit APIs</span>,
+                  enabling easy updates and integration with existing systems.
+                  Regularly handled bug fixes, version compatibility (across
+                  Minecraft updates), and{" "}
+                  <span className="text-white">
+                    plugin optimization to reduce server load.
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Served as the lead developer and infrastructure strategist for
+                  a major Minecraft server with over{" "}
+                  <span className="text-white">15,000 unique players</span>{" "}
+                  across multiple game modes. Scaled server capacity across
+                  multiple instances and integrated database solutions for
+                  cross-server player data. Managed deployment workflows,
+                  including{" "}
+                  <span className="text-white">Git-based version control</span>{" "}
+                  and <span className="text-white">CI/CD pipelines </span>to
+                  roll out updates quickly and reliably.
+                </p>
+              </div>
+              <div className="flex gap-2 items-center justify-between">
+                <Sparkle
+                  fill="#22D3EE"
+                  className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                  strokeWidth={1.25}
+                />
+                <p>
+                  Created integrations with{" "}
+                  <span className="text-white">third-party APIs</span>,
+                  databases (e.g., MySQL), and in-game dashboards to track
+                  player stats, economy, and achievements. Developed secure
+                  systems for player authentication, anti-cheat, and mod
+                  compatibility. Ensured consistent gameplay across all devices
+                  (Java Edition and Bedrock compatibility when needed), working
+                  around protocol and platform differences.
+                </p>
+              </div>
             </div>
           </div>
         </div>
