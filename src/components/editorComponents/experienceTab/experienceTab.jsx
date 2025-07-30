@@ -8,26 +8,12 @@ import AddContainerPopup from "./addContainerPopup";
 
 export default function ExperienceTab() {
   const [showAddContainerPopup, setShowAddContainerPopup] = useState(false);
-  const [containers, setContainers] = useState([
-    {
-      id: 1,
-      startDate: "",
-      endDate: "",
-      company: "",
-      location: "",
-      title: "",
-      experienceDescription: {
-        1: "Some para",
-        2: "Nigg",
-      },
-      tags: ["Bruh"],
-    },
-  ]);
+  const [containers, setContainers] = useState([]);
 
-  // useEffect(() => {
-  //   const unsub = fetchExperienceContainers(setContainers);
-  //   return () => unsub();
-  // }, []);
+  useEffect(() => {
+    const unsub = fetchExperienceContainers(setContainers);
+    return () => unsub();
+  }, []);
 
   return (
     <div className="w-full mt-10 flex flex-col gap-10 justify-center items-center">

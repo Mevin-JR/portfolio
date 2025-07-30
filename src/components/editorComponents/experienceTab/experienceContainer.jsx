@@ -10,6 +10,9 @@ import {
 import Tooltip from "@/components/tooltip";
 import { useState } from "react";
 import DescriptionInput from "./descriptionInput";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
+import toast from "react-hot-toast";
 
 export default function ExperienceContainer({
   isPopup = false,
@@ -25,8 +28,12 @@ export default function ExperienceContainer({
     containerData.experienceDescription || {}
   );
   const [tags, setTags] = useState(containerData.tags || []);
+
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const [popupDescription, setPopupDescription] = useState({});
+  const [popupTags, setPopupTags] = useState([]);
+
+  const inputStyle = `outline-none text-white p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg`;
 
   const addDescriptionPoint = (descriptionPoint) => {
     const key = Object.keys(popupDescription).length + 1;
@@ -36,7 +43,86 @@ export default function ExperienceContainer({
     }));
   };
 
-  const inputStyle = `outline-none p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg`;
+  const removeDescription = (key) => {
+    if (isPopup) {
+      setPopupDescription((prev) => {
+        const { [key]: _, ...updatedDescription } = prev;
+        return updatedDescription;
+      });
+    } else {
+      setDescription((prev) => {
+        const { [key]: _, ...updatedDescription } = prev;
+        return updatedDescription;
+      });
+    }
+  };
+
+  const resetContainerInput = () => {
+    setStartDate("");
+    setEndDate("");
+    setCompanyName("");
+    setLocation("");
+    setTitle("");
+    if (isPopup) {
+      setPopupDescription({});
+      setTags([]);
+    } else {
+      setDescription({});
+      setTags([]);
+    }
+  };
+
+  const getLastContainerID = async () => {
+    try {
+      const containersRef = collection(db, "experience");
+      const snap = await getDocs(containersRef);
+      return snap.docs.length;
+    } catch (error) {
+      console.error("Error retreiving last container ID:", error);
+    }
+  };
+
+  const addContainerToFirestore = async () => {
+    if (
+      !startDate ||
+      !endDate ||
+      !companyName ||
+      !location ||
+      !title ||
+      Object.keys(popupDescription).length === 0
+      // popupTags.length === 0
+    ) {
+      toast.error("Container fields cannot be empty", {
+        duration: 5000,
+        style: {
+          background: "rgba(255, 255, 255, 0.1)",
+          color: "#fff",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        },
+      });
+      return;
+    }
+
+    try {
+      const containerID = (await getLastContainerID()) + 1;
+
+      await addDoc(collection(db, "experience"), {
+        id: containerID,
+        startDate,
+        endDate,
+        company: companyName,
+        location,
+        title,
+        experienceDescription: popupDescription,
+        tags: popupTags,
+      });
+    } catch (error) {
+      console.error("Error adding container to firestore:", error);
+    }
+  };
 
   return (
     <>
@@ -53,7 +139,7 @@ export default function ExperienceContainer({
             {id}
           </div>
         )}
-        <div className="flex gap-5">
+        <div className="flex gap-5 text-gray-400">
           <div className="basis-[25%] flex flex-col justify-center gap-5">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
@@ -141,10 +227,13 @@ export default function ExperienceContainer({
                           className="relative flex items-center py-2 border-b border-white/20"
                         >
                           <h3 className="basis-[5%]">{key}.</h3>
-                          <p className="basis-[90%] text-gray-400 truncate overflow-hidden whitespace-nowrap">
+                          <p className="basis-[90%] w-40 text-white truncate overflow-hidden whitespace-nowrap">
                             {value}
                           </p>
-                          <Trash2 className="absolute right-0 text-red-400 cursor-pointer" />
+                          <Trash2
+                            className="absolute right-0 text-red-400 cursor-pointer"
+                            onClick={() => removeDescription(key)}
+                          />
                         </div>
                       ))
                     ) : (
@@ -163,11 +252,16 @@ export default function ExperienceContainer({
                       Object.entries(description).map(([key, value]) => (
                         <div
                           key={key}
-                          className="flex w-full items-center py-2 border-b border-white/20"
+                          className="relative flex w-full items-center py-2 border-b border-white/20"
                         >
                           <h3 className="basis-[5%]">{key}.</h3>
-                          <p className="basis-[90%] text-gray-400">{value}</p>
-                          <Trash2 className="basis-[5%] text-red-400 cursor-pointer" />
+                          <p className="basis-[90%] w-40 text-white truncate overflow-hidden whitespace-nowrap">
+                            {value}
+                          </p>
+                          <Trash2
+                            className="absolute right-0 text-red-400 cursor-pointer"
+                            onClick={() => removeDescription(key)}
+                          />
                         </div>
                       ))
                     ) : (
@@ -231,13 +325,25 @@ export default function ExperienceContainer({
             className="flex border border-cyan-400/50 bg-cyan-400/10 w-full
               text-sm text-cyan-400 rounded"
           >
-            <div className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300">
-              {isPopup ? "Add" : "Update"}
-            </div>
+            {isPopup ? (
+              <div
+                className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
+                onClick={addContainerToFirestore}
+              >
+                Add
+              </div>
+            ) : (
+              <div className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300">
+                Update
+              </div>
+            )}
             <div className="flex justify-center items-center">
               <div className="w-[1px] h-[50%] bg-cyan-400/60" />
             </div>
-            <div className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300">
+            <div
+              className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
+              onClick={resetContainerInput}
+            >
               Reset
             </div>
           </div>
