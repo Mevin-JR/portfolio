@@ -90,7 +90,7 @@ export default function EditorPage() {
                 </>
               ) : (
                 <>
-                  <main className="flex flex-col items-center min-h-screen overflow-hidden">
+                  <main className="relative flex flex-col items-center min-h-screen overflow-hidden">
                     <EditorNav
                       activeTab={activeTab}
                       setActiveTab={setActiveTab}

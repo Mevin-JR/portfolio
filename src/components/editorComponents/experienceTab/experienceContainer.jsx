@@ -6,16 +6,25 @@ import {
   PlusIcon,
   Tag,
   Trash2,
+  X,
 } from "lucide-react";
 import Tooltip from "@/components/tooltip";
 import { useState } from "react";
 import DescriptionInput from "./descriptionInput";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import toast from "react-hot-toast";
+import ConfirmationPopup from "@/components/confirmationPopup";
 
 export default function ExperienceContainer({
   isPopup = false,
+  setShowPopup = null,
   containerData = {},
 }) {
   const [id, setID] = useState(containerData.id || "");
@@ -28,10 +37,17 @@ export default function ExperienceContainer({
     containerData.experienceDescription || {}
   );
   const [tags, setTags] = useState(containerData.tags || []);
+  const [tagInput, setTagInput] = useState("");
 
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const [popupDescription, setPopupDescription] = useState({});
   const [popupTags, setPopupTags] = useState([]);
+
+  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
+  const [confirmationHandlers, setConfirmationHandlers] = useState({
+    onConfirm: () => {},
+    onCancel: () => {},
+  });
 
   const inputStyle = `outline-none text-white p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg`;
 
@@ -65,7 +81,7 @@ export default function ExperienceContainer({
     setTitle("");
     if (isPopup) {
       setPopupDescription({});
-      setTags([]);
+      setPopupTags([]);
     } else {
       setDescription({});
       setTags([]);
@@ -82,15 +98,63 @@ export default function ExperienceContainer({
     }
   };
 
-  const addContainerToFirestore = async () => {
+  const setContainerFirebase = async (containerID) => {
+    try {
+      await setDoc(doc(db, "experience", containerID.toString()), {
+        id: containerID,
+        startDate,
+        endDate,
+        company: companyName,
+        location,
+        title,
+        experienceDescription: isPopup ? popupDescription : description,
+        tags: isPopup ? popupTags : tags,
+      });
+    } catch (error) {
+      console.error("Error setting container to firestore:", error);
+    }
+  };
+
+  const updateContainer = async (id) => {
+    setContainerFirebase(id)
+      .then(() => {
+        toast.success(`Successfully updated container (${id})`, {
+          duration: 5000,
+          style: {
+            background: "rgba(255, 255, 255, 0.1)",
+            color: "#fff",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          },
+        });
+      })
+      .catch((error) => {
+        toast.error("Something went wrong", {
+          duration: 5000,
+          style: {
+            background: "rgba(255, 255, 255, 0.1)",
+            color: "#fff",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          },
+        });
+        console.error("Error updating experience container:", error);
+      });
+  };
+
+  const addContainer = async () => {
     if (
       !startDate ||
       !endDate ||
       !companyName ||
       !location ||
       !title ||
-      Object.keys(popupDescription).length === 0
-      // popupTags.length === 0
+      Object.keys(popupDescription).length === 0 ||
+      popupTags.length === 0
     ) {
       toast.error("Container fields cannot be empty", {
         duration: 5000,
@@ -109,23 +173,75 @@ export default function ExperienceContainer({
     try {
       const containerID = (await getLastContainerID()) + 1;
 
-      await addDoc(collection(db, "experience"), {
-        id: containerID,
-        startDate,
-        endDate,
-        company: companyName,
-        location,
-        title,
-        experienceDescription: popupDescription,
-        tags: popupTags,
-      });
+      setContainerFirebase(containerID);
+      setShowPopup(false);
     } catch (error) {
       console.error("Error adding container to firestore:", error);
     }
   };
 
+  const removeContainer = async (containerID) => {
+    const isConfirmed = await new Promise((resolve) => {
+      const handleConfirm = () => {
+        setShowConfirmationPopup(false);
+        resolve(true);
+      };
+
+      const handleCancel = () => {
+        setShowConfirmationPopup(false);
+        resolve(false);
+      };
+
+      setConfirmationHandlers({
+        onConfirm: handleConfirm,
+        onCancel: handleCancel,
+      });
+      setShowConfirmationPopup(true);
+    });
+
+    if (isConfirmed) {
+      try {
+        await deleteDoc(doc(db, "experience", containerID.toString()));
+
+        toast.success(`Successfully deleted container (${id})`, {
+          duration: 5000,
+          style: {
+            background: "rgba(255, 255, 255, 0.1)",
+            color: "#fff",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          },
+        });
+      } catch (error) {
+        toast.error("Error deleting container", {
+          duration: 5000,
+          style: {
+            background: "rgba(255, 255, 255, 0.1)",
+            color: "#fff",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          },
+        });
+        console.error(
+          `Error removing experience container (${containerID})`,
+          error
+        );
+      }
+    }
+  };
+
   return (
     <>
+      <ConfirmationPopup
+        isOpen={showConfirmationPopup}
+        setIsOpen={setShowConfirmationPopup}
+        onConfirm={confirmationHandlers.onConfirm}
+        onCancel={confirmationHandlers.onCancel}
+      />
       <div
         className="p-5 flex flex-col items-center gap-10
        bg-[#121414] backdrop-blur-sm border border-white/20 rounded-lg"
@@ -295,28 +411,112 @@ export default function ExperienceContainer({
                 during the experience period
               </p>
             </div>
-            <div className="flex items-center">
-              <input
-                placeholder="Add tag"
-                className="outline-none p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-l-lg"
-              />
-              <div
-                className="w-full h-full flex items-center justify-center 
-            bg-white/5 backdrop-blur-sm border border-white/20 border-l-0 rounded-r-lg cursor-pointer hover:bg-white/15 transition-all duration-200"
-              >
-                <Tooltip text="Add tag" bgColor="transparent" textColor="cyan">
-                  <Plus />
-                </Tooltip>
-              </div>
-            </div>
-            {tags && (
-              <div className="flex gap-2 flex-wrap">
-                {tags.map((tag) => (
-                  <div className="px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg">
-                    {tag}
+            {isPopup ? (
+              <>
+                <div className="flex items-center text-white">
+                  <input
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    placeholder="Add tag"
+                    maxLength={15}
+                    className="outline-none p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-l-lg"
+                  />
+                  <div
+                    className="w-full h-full flex items-center justify-center 
+                    bg-white/5 backdrop-blur-sm border border-white/20 border-l-0 rounded-r-lg cursor-pointer hover:bg-white/15 transition-all duration-200"
+                    onClick={() => {
+                      if (!tagInput) return;
+                      if (popupTags.length >= 15) return;
+                      setPopupTags((prev) => [...prev, tagInput]);
+                      setTagInput("");
+                    }}
+                  >
+                    <Tooltip
+                      text="Add tag"
+                      bgColor="transparent"
+                      textColor="cyan"
+                    >
+                      <Plus />
+                    </Tooltip>
                   </div>
-                ))}
-              </div>
+                </div>
+                {popupTags && (
+                  <div className="flex gap-2 flex-wrap max-h-[150px] overflow-scroll scrollbar-hide">
+                    {popupTags.map((tag) => (
+                      <div
+                        key={`PopupTag#${tag}`}
+                        className="relative text-sm text-white px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg group"
+                      >
+                        <div
+                          className="hidden group-hover:flex absolute left-0 right-0 top-0 bottom-0 bg-[#222525]
+                        justify-center items-center rounded-lg cursor-pointer"
+                          onClick={() => {
+                            setPopupTags((prev) =>
+                              prev.filter((arrTag) => arrTag !== tag)
+                            );
+                          }}
+                        >
+                          <X width={20} height={20} className="text-red-500" />
+                        </div>
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="flex items-center text-white">
+                  <input
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    placeholder="Add tag"
+                    maxLength={15}
+                    className="outline-none p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-l-lg"
+                  />
+                  <div
+                    className="w-full h-full flex items-center justify-center 
+            bg-white/5 backdrop-blur-sm border border-white/20 border-l-0 rounded-r-lg cursor-pointer hover:bg-white/15 transition-all duration-200"
+                    onClick={() => {
+                      if (!tagInput) return;
+                      if (tags.length >= 15) return;
+                      setTags((prev) => [...prev, tagInput]);
+                      setTagInput("");
+                    }}
+                  >
+                    <Tooltip
+                      text="Add tag"
+                      bgColor="transparent"
+                      textColor="cyan"
+                    >
+                      <Plus />
+                    </Tooltip>
+                  </div>
+                </div>
+                {tags && (
+                  <div className="flex gap-2 flex-wrap max-h-[150px] overflow-scroll scrollbar-hide">
+                    {tags.map((tag) => (
+                      <div
+                        key={`Tag#${tag}`}
+                        className="relative text-sm text-white px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg group"
+                      >
+                        <div
+                          className="hidden group-hover:flex absolute left-0 right-0 top-0 bottom-0 bg-red-200
+                        justify-center items-center rounded-lg cursor-pointer"
+                          onClick={() => {
+                            setTags((prev) =>
+                              prev.filter((arrTag) => arrTag !== tag)
+                            );
+                          }}
+                        >
+                          <X width={20} height={20} className="text-red-500" />
+                        </div>
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -326,26 +526,42 @@ export default function ExperienceContainer({
               text-sm text-cyan-400 rounded"
           >
             {isPopup ? (
-              <div
-                className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
-                onClick={addContainerToFirestore}
-              >
-                Add
-              </div>
+              <>
+                <div
+                  className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
+                  onClick={addContainer}
+                >
+                  Add
+                </div>
+                <div className="flex justify-center items-center">
+                  <div className="w-[1px] h-[50%] bg-cyan-400/60" />
+                </div>
+                <div
+                  className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
+                  onClick={resetContainerInput}
+                >
+                  Reset
+                </div>
+              </>
             ) : (
-              <div className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300">
-                Update
-              </div>
+              <>
+                <div
+                  className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
+                  onClick={() => updateContainer(id)}
+                >
+                  Update
+                </div>
+                <div className="flex justify-center items-center">
+                  <div className="w-[1px] h-[50%] bg-cyan-400/60" />
+                </div>
+                <div
+                  className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-red-400 hover:text-black transition-all duration-300"
+                  onClick={() => removeContainer(id)}
+                >
+                  Remove
+                </div>
+              </>
             )}
-            <div className="flex justify-center items-center">
-              <div className="w-[1px] h-[50%] bg-cyan-400/60" />
-            </div>
-            <div
-              className="py-2 basis-[50%] flex items-center justify-center cursor-pointer hover:bg-cyan-400 hover:text-black transition-all duration-300"
-              onClick={resetContainerInput}
-            >
-              Reset
-            </div>
           </div>
         </div>
       </div>

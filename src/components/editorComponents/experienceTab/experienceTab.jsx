@@ -19,7 +19,7 @@ export default function ExperienceTab() {
     <div className="w-full mt-10 flex flex-col gap-10 justify-center items-center">
       <h1 className="text-2xl text-cyan-400">Experience Continers</h1>
       {containers.length > 0 ? (
-        <div className="relative w-[80%]">
+        <div className="w-[80%] flex flex-col gap-10">
           {containers.map((container, index) => (
             <ExperienceContainer key={index} containerData={container} />
           ))}
