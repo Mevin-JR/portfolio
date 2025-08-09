@@ -462,11 +462,17 @@ export default function Main() {
                 className="w-full flex flex-col lg:flex-row lg:justify-around gap-5 lg:gap-0"
               >
                 <div className="basis-[20%] flex flex-col gap-3 text-gray-400 text-sm">
-                  <h3 className="text-sm">{`${startDate.toUpperCase()} - ${endDate}`}</h3>
-                  <h2 className="text-white text-2xl">{company}</h2>
+                  <h3 className="text-xs lg:text-sm">{`${startDate.toUpperCase()} - ${endDate}`}</h3>
+                  <h2 className="text-white text-lg md:text-xl lg:text-2xl">
+                    {company}
+                  </h2>
                   <div className="flex gap-2 items-center">
-                    <MapPin height={18} width={18} />
-                    <h3 className="text-sm">{location}</h3>
+                    <MapPin
+                      height={18}
+                      width={18}
+                      className="w-4 lg:w-5 h-4 lg:h-5"
+                    />
+                    <h3 className="text-xs lg:text-sm">{location}</h3>
                   </div>
                 </div>
                 <div className="basis-[55%] flex flex-col gap-5 text-gray-400 text-xs md:text-sm">
