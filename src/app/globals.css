@@ -30,3 +30,7 @@ body::selection {
 img {
   -webkit-user-drag: none;
 }
+
+.text-white {
+  color: white;
+}
