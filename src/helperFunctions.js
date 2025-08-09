@@ -1,5 +1,32 @@
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "./firebaseConfig";
+
+/*
+ * Logging user visit details to firestore
+ */
+export const logUniqueUserVisit = async (visitorId) => {
+  const geoInfo = await fetchUserGeoInfo();
+  const visitorRef = collection(db, "stats", "page_visitors", "visitors_data");
+  await addDoc(visitorRef, {
+    visitorId,
+    firstVisit: new Date().toISOString(),
+    lastVisit: new Date().toISOString(),
+  });
+};
+
+/*
+ * Fetch user geo info (approximatly without prompting)
+ */
+export const fetchUserGeoInfo = async () => {
+  const userGeoInfo = await fetch("https://ipapi.co/json/");
+  return await userGeoInfo.json();
+};
 
 /*
  * Fetch social links from firestore (on-time)
