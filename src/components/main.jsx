@@ -459,18 +459,18 @@ export default function Main() {
             }) => (
               <div
                 key={`${id}#${title}`}
-                className="flex w-full justify-around"
+                className="w-full flex flex-col lg:flex-row lg:justify-around gap-5 lg:gap-0"
               >
-                <div className="flex flex-col gap-3 text-gray-400 text-sm basis-[20%]">
-                  <h3>{`${startDate.toUpperCase()} - ${endDate}`}</h3>
+                <div className="basis-[20%] flex flex-col gap-3 text-gray-400 text-sm">
+                  <h3 className="text-sm">{`${startDate.toUpperCase()} - ${endDate}`}</h3>
                   <h2 className="text-white text-2xl">{company}</h2>
                   <div className="flex gap-2 items-center">
                     <MapPin height={18} width={18} />
-                    <h3>{location}</h3>
+                    <h3 className="text-sm">{location}</h3>
                   </div>
                 </div>
-                <div className="basis-[55%] flex flex-col gap-4 text-gray-400 text-sm">
-                  <h2 className="text-white text-xl">{title}</h2>
+                <div className="basis-[55%] flex flex-col gap-5 text-gray-400 text-xs md:text-sm">
+                  <h2 className="text-white text-base lg:text-xl">{title}</h2>
 
                   {Object.values(experienceDescription).map((value, index) => (
                     <div
@@ -479,18 +479,18 @@ export default function Main() {
                     >
                       <Sparkle
                         fill="#22D3EE"
-                        className="mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased basis-[10%]"
+                        className="hidden sm:block basis-[35%] 2xl:basis-[10%] mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased"
                         strokeWidth={1.25}
                       />
                       <p dangerouslySetInnerHTML={{ __html: value }} />
                     </div>
                   ))}
 
-                  <div className="flex gap-3 flex-wrap w-[90%]">
+                  <div className="flex gap-2 lg:gap-3 flex-wrap">
                     {tags.map((tag) => (
                       <div
                         key={tag}
-                        className="px-4 py-2 text-white
+                        className="px-2 lg:px-4 py-2 text-white
                         bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg"
                       >
                         {tag}
