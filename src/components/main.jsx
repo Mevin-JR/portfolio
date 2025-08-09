@@ -295,7 +295,7 @@ export default function Main() {
       </motion.section>
       <motion.section
         id="work"
-        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
+        className="min-h-screen py-20 w-[80vw] flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -431,7 +431,7 @@ export default function Main() {
       </motion.section>
       <motion.section
         id="experience"
-        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
+        className="min-h-screen py-20 w-[80vw] flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -445,7 +445,10 @@ export default function Main() {
             Timeline of <span className="text-cyan-400">Growth</span>
           </h2>
         </div>
-        <div id="experience-container" className="flex flex-col gap-10 w-full">
+        <div
+          id="experience-container"
+          className="flex flex-col gap-20 lg:gap-32 w-full"
+        >
           {experienceContainers.map(
             ({
               id,
