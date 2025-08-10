@@ -4,7 +4,11 @@ import { motion } from "motion/react";
 import Socials from "./socials";
 import Image from "next/image";
 import { ArrowUpRight, MapPin, Sparkle } from "lucide-react";
-import { fetchExperienceContainers } from "@/helperFunctions";
+import {
+  fetchExperienceContainers,
+  logUniqueUserVisit,
+  logUserVisit,
+} from "@/helperFunctions";
 import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
@@ -14,6 +18,23 @@ const ResumeBtn = dynamic(() => import("./resumeBtn"), {
 
 export default function Main() {
   const [experienceContainers, setExperienceContainers] = useState([]);
+
+  useEffect(() => {
+    const logVisitor = () => {
+      let visitorId = localStorage.getItem("visitorId");
+      if (!visitorId) {
+        // Unique User
+        visitorId = crypto.randomUUID();
+        localStorage.setItem("visitorId", visitorId);
+
+        logUniqueUserVisit(visitorId);
+      } else {
+        logUserVisit(visitorId);
+      }
+    };
+
+    logVisitor();
+  }, []);
 
   useEffect(() => {
     const unsub = fetchExperienceContainers(setExperienceContainers);

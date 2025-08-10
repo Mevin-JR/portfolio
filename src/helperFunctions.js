@@ -1,31 +1,96 @@
 import {
-  addDoc,
+  arrayUnion,
   collection,
   doc,
   getDoc,
   onSnapshot,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 
 /*
- * Logging user visit details to firestore
+ * Logging unique user visit details to firestore
  */
 export const logUniqueUserVisit = async (visitorId) => {
-  const geoInfo = await fetchUserGeoInfo();
-  const visitorRef = collection(db, "stats", "page_visitors", "visitors_data");
-  await addDoc(visitorRef, {
-    visitorId,
-    firstVisit: new Date().toISOString(),
-    lastVisit: new Date().toISOString(),
-  });
+  try {
+    const geoInfo = await fetchUserGeoInfo();
+    const visitorRef = doc(
+      db,
+      "stats",
+      "page_visitors",
+      "visitors_data",
+      visitorId
+    );
+    await setDoc(visitorRef, {
+      visitorId,
+      firstVisit: serverTimestamp(),
+      lastVisit: serverTimestamp(),
+      visits: [
+        {
+          localTimestamp: new Date().toISOString(),
+          ip: geoInfo.ip,
+          agent: navigator.userAgent,
+          city: geoInfo.city,
+          region: geoInfo.region,
+          country: geoInfo.country,
+          timezone: geoInfo.timezone,
+          referrer: document.referrer,
+          path: window.location.pathname,
+        },
+      ],
+    });
+  } catch (error) {
+    console.error("Error logging unique user visit:", error);
+  }
+};
+
+/*
+ * Logging recurring user visit details to firestore
+ */
+export const logUserVisit = async (visitorId) => {
+  try {
+    const geoInfo = await fetchUserGeoInfo();
+    const visitorRef = doc(
+      db,
+      "stats",
+      "page_visitors",
+      "visitors_data",
+      visitorId
+    );
+
+    const visitData = {
+      localTimestamp: new Date().toISOString(),
+      ip: geoInfo.ip,
+      agent: navigator.userAgent,
+      city: geoInfo.city,
+      region: geoInfo.region,
+      country: geoInfo.country,
+      timezone: geoInfo.timezone,
+      referrer: document.referrer,
+      path: window.location.pathname,
+    };
+
+    await updateDoc(visitorRef, {
+      lastVisit: serverTimestamp(),
+      visits: arrayUnion(visitData),
+    });
+  } catch (error) {
+    console.error("Error logging user visit:", error);
+  }
 };
 
 /*
  * Fetch user geo info (approximatly without prompting)
  */
 export const fetchUserGeoInfo = async () => {
-  const userGeoInfo = await fetch("https://ipapi.co/json/");
-  return await userGeoInfo.json();
+  try {
+    const userGeoInfo = await fetch("https://ipapi.co/json/");
+    return await userGeoInfo.json();
+  } catch (error) {
+    console.error("Error fetching user geo info:", error);
+  }
 };
 
 /*
