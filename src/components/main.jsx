@@ -10,6 +10,7 @@ import {
   logUserVisit,
   updatePageViewCount,
 } from "@/helperFunctions";
+import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
@@ -19,13 +20,27 @@ const ResumeBtn = dynamic(() => import("./resumeBtn"), {
 
 export default function Main() {
   const [experienceContainers, setExperienceContainers] = useState([]);
+  const [viewportAmount, setViewportAmount] = useState(0.1);
+
+  useEffect(() => {
+    const updateViewportAmount = () => {
+      if (window.innerWidth < 768) {
+        setViewportAmount(0.1); // Mobile (default & sm)
+      } else {
+        setViewportAmount(0.3); // Desktop (md, lg, xl, 2xl ...)
+      }
+    };
+    updateViewportAmount();
+    window.addEventListener("resize", updateViewportAmount);
+    return () => window.removeEventListener("resize", updateViewportAmount);
+  }, []);
 
   useEffect(() => {
     const logVisitor = () => {
       let visitorId = localStorage.getItem("visitorId");
       if (!visitorId) {
         // Unique User
-        visitorId = crypto.randomUUID();
+        visitorId = uuidv4();
         localStorage.setItem("visitorId", visitorId);
 
         logUniqueUserVisit(visitorId);
@@ -206,11 +221,11 @@ export default function Main() {
 
       <motion.section
         id="about"
-        className="min-h-screen py-10 w-[80vw] flex flex-col gap-10 justify-between md:flex-row md:gap-0 items-center"
+        className="min-h-screen py-20 w-[80vw] flex flex-col gap-10 justify-between md:flex-row md:gap-0 items-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: viewportAmount }}
       >
         <div id="about-left" className="flex flex-col gap-5 md:w-[45%] md:mt-0">
           <div id="about-title">
@@ -279,11 +294,11 @@ export default function Main() {
 
       <motion.section
         id="skills"
-        className="min-h-screen py-10 w-[80vw] flex flex-col items-center justify-center"
+        className="min-h-screen py-20 w-[80vw] flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: viewportAmount }}
       >
         <div id="skills-title" className="text-center mb-10">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">
@@ -322,7 +337,7 @@ export default function Main() {
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: viewportAmount }}
       >
         {/* TODO: Motion for each work row */}
         <div id="work-title" className="text-center mb-10 sm:mb-20">
@@ -333,10 +348,7 @@ export default function Main() {
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
         </div>
-        <div
-          id="work-container"
-          className="flex flex-col gap-40 sm:gap-30 md:gap-20"
-        >
+        <div id="work-container" className="flex flex-col gap-20">
           {works.map(
             (
               {
@@ -458,7 +470,7 @@ export default function Main() {
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: viewportAmount }}
       >
         <div id="experience-title" className="text-center mb-10 sm:mb-20">
           <h1 className="text-gray-400 text-md md:text-lg uppercase">

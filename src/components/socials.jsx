@@ -25,6 +25,7 @@ export default function Socials() {
           height={32}
           width={32}
           className="aspect-square"
+          priority
         />
       ),
       target: `${links.github}`,
@@ -38,6 +39,7 @@ export default function Socials() {
           height={32}
           width={32}
           className="aspect-square"
+          priority
         />
       ),
       target: `${links.linkedin}`,

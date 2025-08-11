@@ -22,6 +22,7 @@ export default function PageViewCount() {
         width={25}
         height={25}
         priority
+        unoptimized
       />
       <Tooltip
         text="Portfolio Views"
