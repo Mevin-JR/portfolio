@@ -120,6 +120,21 @@ export const updatePageViewCount = async () => {
 };
 
 /*
+ * Fetch page view count (realtime)
+ */
+export const fetchPageViewCount = async (callback) => {
+  try {
+    const viewCountRef = doc(db, "stats", "page_visitors");
+    return onSnapshot(viewCountRef, (snap) => {
+      const data = snap.data();
+      if (snap.exists()) callback(data.totalVisits);
+    });
+  } catch (error) {
+    console.error("Error fetching page view count realtime:", error);
+  }
+};
+
+/*
  * Fetch social links from firestore (on-time)
  */
 export const fetchLinks = async () => {
