@@ -8,6 +8,7 @@ import {
   fetchExperienceContainers,
   logUniqueUserVisit,
   logUserVisit,
+  updatePageViewCount,
 } from "@/helperFunctions";
 import { useEffect, useState } from "react";
 
@@ -34,6 +35,7 @@ export default function Main() {
     };
 
     logVisitor();
+    updatePageViewCount();
   }, []);
 
   useEffect(() => {

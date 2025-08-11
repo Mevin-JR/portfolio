@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   onSnapshot,
   serverTimestamp,
   setDoc,
@@ -90,6 +91,31 @@ export const fetchUserGeoInfo = async () => {
     return await userGeoInfo.json();
   } catch (error) {
     console.error("Error fetching user geo info:", error);
+  }
+};
+
+/*
+ * Update page view counts
+ */
+export const updatePageViewCount = async () => {
+  try {
+    const viewCountRef = doc(db, "stats", "page_visitors");
+    const visitorsDataSnap = await getDocs(
+      collection(db, "stats", "page_visitors", "visitors_data")
+    );
+
+    let totalVisits = 0;
+    visitorsDataSnap.forEach((doc) => {
+      const data = doc.data();
+      if (Array.isArray(data.visits)) totalVisits += data.visits.length;
+    });
+
+    await updateDoc(viewCountRef, {
+      totalVisits,
+      uniqueVisitors: visitorsDataSnap.size,
+    });
+  } catch (error) {
+    console.error("Error updating page view count:", error);
   }
 };
 
