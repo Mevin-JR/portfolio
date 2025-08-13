@@ -17,9 +17,11 @@
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-flip-numbers": "^3.0.9",
     "react-hot-toast": "^2.5.2",
     "react-pdf": "^9.2.1",
-    "tailwind-scrollbar-hide": "^4.0.0"
+    "tailwind-scrollbar-hide": "^4.0.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "postcss": "^8",
