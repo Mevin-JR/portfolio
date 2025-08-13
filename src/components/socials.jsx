@@ -93,15 +93,16 @@ export default function Socials() {
   return (
     <ul className="flex gap-3 items-center justify-center w-max">
       {socials.map(({ name, icon, target }) => (
-        <Tooltip key={name} text={name} position="bottom" bgColor="transparent">
-          <li
-            className="flex items-center justify-center w-[50px] h-[50px] cursor-pointer
+        <li
+          key={name}
+          className="flex items-center justify-center w-[50px] h-[50px] cursor-pointer
             border border-gray-500 rounded bg-transparent p-2 transition-shadow hover:shadow-[0_0_25px_2px_rgba(255,255,255,0.5)]"
-            onClick={() => openTarget(target)}
-          >
+          onClick={() => openTarget(target)}
+        >
+          <Tooltip text={name} position="bottom" bgColor="transparent">
             {icon}
-          </li>
-        </Tooltip>
+          </Tooltip>
+        </li>
       ))}
     </ul>
   );
