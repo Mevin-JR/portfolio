@@ -18,11 +18,12 @@ export default function PageViewCount() {
     <div className="fixed bottom-5 left-5 flex gap-2 items-center">
       <Image
         src="/icons/animated/eye_look_around.gif"
-        alt="Eye gif"
+        alt="Animated"
         width={25}
         height={25}
-        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         unoptimized
+        priority
       />
       <Tooltip
         text="Portfolio Views"

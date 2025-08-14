@@ -9,6 +9,8 @@ const aldrich = Aldrich({
   variable: "--font-aldrich",
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
+  fallback: ["Arial", "sans-serif"],
 });
 
 export const metadata = {

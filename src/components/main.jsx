@@ -87,7 +87,7 @@ export default function Main() {
     {
       name: "Valorant Profiler",
       color: "#FF9365",
-      gradient: "/gradients/orange.png",
+      gradient: "/gradients/orange.webp",
       description: `<p>
                   Valorant Profiler is a desktop application designed to manage
                   and track Valorant player accounts. It integrates with the
@@ -130,7 +130,7 @@ export default function Main() {
     {
       name: "Chess Game",
       color: "#E3C16F",
-      gradient: "/gradients/yellow.png",
+      gradient: "/gradients/yellow.webp",
       description: `<p>
                 Chess Game is a custom-built chess application developed using Python and Pygame, 
                 with all game logic implemented from scratch. The project focuses on recreating 
@@ -152,7 +152,7 @@ export default function Main() {
     {
       name: "Aura Shield",
       color: "#0081BF",
-      gradient: "/gradients/cyan.png",
+      gradient: "/gradients/cyan.webp",
       description: `<p>
                 Aura Shield is a web application designed to detect and analyze potential 
                 toxins or harmful substances in cosmetic products. Using machine learning 
@@ -280,12 +280,14 @@ export default function Main() {
             <Socials />
           </motion.div>
         </div>
-        <div id="about-right" className="md:w-[45%] h-auto">
+        <div id="about-right" className="md:w-[45%]">
           <Image
-            src="/about_right.png"
+            src="/about_right.webp"
             alt="About Section Image"
-            width={800}
+            width={1200}
             height={800}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={60}
             priority
             className="animate-bobbing"
           />
