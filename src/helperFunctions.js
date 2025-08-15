@@ -73,9 +73,12 @@ export const logUserVisit = async (visitorId) => {
       path: window.location.pathname,
     };
 
+    const data = (await getDoc(visitorRef)).data();
+
     await updateDoc(visitorRef, {
       lastVisit: serverTimestamp(),
       visits: arrayUnion(visitData),
+      visitCount: data.visits.length,
     });
   } catch (error) {
     console.error("Error logging user visit:", error);
