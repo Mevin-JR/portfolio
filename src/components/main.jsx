@@ -293,7 +293,6 @@ export default function Main() {
           />
         </div>
       </motion.section>
-
       <motion.section
         id="skills"
         className="min-h-screen py-20 w-[80vw] flex flex-col items-center justify-center"
@@ -311,12 +310,12 @@ export default function Main() {
 
         <div
           id="skills-cards"
-          className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-6"
+          className="flex gap-3 md:gap-6 justify-center flex-wrap"
         >
           {skills.map(({ name, icon }) => (
             <div
               key={name}
-              className="flex lg:flex-col gap-1 md:gap-4 items-center justify-center px-2 py-3 lg:px-4 lg:py-4
+              className="w-24 md:w-40 flex lg:flex-col gap-1 md:gap-4 items-center justify-center px-2 py-3 lg:px-4 lg:py-4
               bg-white/5 backdrop-blur-sm border border-white/20 shadow-md rounded 
               text-center text-gray-400 text-xs md:text-lg hover:shadow-[0_0_30px_#06b6d4] hover:text-cyan-400 transition-all duration-200"
             >
