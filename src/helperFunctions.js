@@ -28,6 +28,7 @@ export const logUniqueUserVisit = async (visitorId) => {
       visitorId,
       firstVisit: serverTimestamp(),
       lastVisit: serverTimestamp(),
+      visitCount: 1,
       visits: [
         {
           localTimestamp: new Date().toISOString(),
