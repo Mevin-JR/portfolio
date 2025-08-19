@@ -1,6 +1,6 @@
 "use client";
 
-import { LuFile as FileIcon, LuInfo } from "react-icons/lu";
+import { LuFile, LuInfo } from "react-icons/lu";
 import LinkComponent from "./linkComponent";
 import { useEffect, useRef, useState } from "react";
 import { db, storage } from "@/firebaseConfig";
@@ -121,7 +121,7 @@ export default function LinksTab() {
               cursor-pointer"
                 onClick={handleResumeUpload}
               >
-                <FileIcon width={50} height={50} />
+                <LuFile size={50} />
                 <div className="text-center">
                   <p>Click to upload resume</p>
                   <p>.pdf supported</p>

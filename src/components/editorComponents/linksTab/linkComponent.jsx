@@ -84,21 +84,14 @@ export default function LinkComponent({ linkName = "Default" }) {
             </p>
           </div>
         )}
-        <Tooltip
-          text="Change URL"
-          position="top"
-          textColor="#facc15"
-          bgColor="transparent"
-        >
-          <div
-            className="flex items-center justify-center px-2 
+        <div
+          className="flex items-center justify-center px-2 
                     bg-cyan-400/5 border border-l-0 border-cyan-400/50 rounded-r
                       cursor-pointer"
-            onClick={() => setShowLinkEditPopup(true)}
-          >
-            <LuPenLine width={20} height={20} className="text-yellow-400" />
-          </div>
-        </Tooltip>
+          onClick={() => setShowLinkEditPopup(true)}
+        >
+          <LuPenLine width={20} height={20} className="text-yellow-400" />
+        </div>
         {showLinkEditPopup && (
           <LinkEditPopup
             linkName={linkName}

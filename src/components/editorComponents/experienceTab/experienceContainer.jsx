@@ -3,7 +3,6 @@ import {
   LuCalendar,
   LuMapPin,
   LuPlus,
-  LuPlusIcon,
   LuTag,
   LuTrash2,
   LuX,
@@ -325,7 +324,7 @@ export default function ExperienceContainer({
                     className="p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg cursor-pointer"
                     onClick={() => setShowDescriptionInput(true)}
                   >
-                    <LuPlusIcon />
+                    <LuPlus />
                   </div>
                 </Tooltip>
               </div>
