@@ -1,7 +1,8 @@
 "use client";
 
-import { Mail } from "lucide-react";
-import Image from "next/image";
+import { LuMail } from "react-icons/lu";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 import Tooltip from "./tooltip";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -18,35 +19,17 @@ export default function Socials() {
   const socials = [
     {
       name: "Github",
-      icon: (
-        <Image
-          src="/icons/socials/github.svg"
-          alt="Github"
-          height={32}
-          width={32}
-          className="aspect-square"
-          priority
-        />
-      ),
+      icon: <FaGithub size={32} />,
       target: `${links.github}`,
     },
     {
       name: "LinkedIn",
-      icon: (
-        <Image
-          src="/icons/socials/linkedIn.svg"
-          alt="LinkedIn"
-          height={32}
-          width={32}
-          className="aspect-square"
-          priority
-        />
-      ),
+      icon: <FaLinkedin size={32} />,
       target: `${links.linkedin}`,
     },
     {
       name: "Mail",
-      icon: <Mail height={32} width={32} className="aspect-square" />,
+      icon: <LuMail size={32} />,
       target: `${links.email}`,
     },
   ];

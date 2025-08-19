@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Socials from "./socials";
 import Image from "next/image";
-import { ArrowUpRight, MapPin, Sparkle } from "lucide-react";
+import { LuArrowUpRight, LuMapPin, LuSparkle } from "react-icons/lu";
 import {
   fetchExperienceContainers,
   logUniqueUserVisit,
@@ -420,7 +420,7 @@ export default function Main() {
                         style={{ color: color }}
                       >
                         <p>Live Demo</p>
-                        <ArrowUpRight />
+                        <LuArrowUpRight size={22} />
                       </div>
                     ) : (
                       <div
@@ -428,7 +428,7 @@ export default function Main() {
                         style={{ color: "gray" }}
                       >
                         <p>Live Demo</p>
-                        <ArrowUpRight />
+                        <LuArrowUpRight size={22} />
                       </div>
                     )}
                   </div>
@@ -506,11 +506,7 @@ export default function Main() {
                     {company}
                   </h2>
                   <div className="flex gap-2 items-center">
-                    <MapPin
-                      height={18}
-                      width={18}
-                      className="w-4 lg:w-5 h-4 lg:h-5"
-                    />
+                    <LuMapPin size={18} className="w-4 lg:w-5 h-4 lg:h-5" />
                     <h3 className="text-xs lg:text-sm">{location}</h3>
                   </div>
                 </div>
@@ -522,7 +518,7 @@ export default function Main() {
                       key={`${index}`}
                       className="flex gap-2 items-center justify-between"
                     >
-                      <Sparkle
+                      <LuSparkle
                         fill="#22D3EE"
                         className="hidden sm:block basis-[35%] 2xl:basis-[10%] mt-[2px] w-4 h-4 text-cyan-400 subpixel-antialiased"
                         strokeWidth={1.25}

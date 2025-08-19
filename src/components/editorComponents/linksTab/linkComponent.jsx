@@ -1,4 +1,4 @@
-import { PenLine } from "lucide-react";
+import { LuPenLine } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import LinkEditPopup from "./linkEditPopup";
 import { fetchLinks } from "@/helperFunctions";
@@ -96,7 +96,7 @@ export default function LinkComponent({ linkName = "Default" }) {
                       cursor-pointer"
             onClick={() => setShowLinkEditPopup(true)}
           >
-            <PenLine width={20} height={20} className="text-yellow-400" />
+            <LuPenLine width={20} height={20} className="text-yellow-400" />
           </div>
         </Tooltip>
         {showLinkEditPopup && (
