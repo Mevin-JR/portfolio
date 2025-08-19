@@ -11,9 +11,10 @@ import {
   updatePageViewCount,
 } from "@/helperFunctions";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import dynamic from "next/dynamic";
+import ScrollProgressBar from "./scrollProgressBar";
 const ResumeBtn = dynamic(() => import("./resumeBtn"), {
   ssr: false,
 });
@@ -21,6 +22,8 @@ const ResumeBtn = dynamic(() => import("./resumeBtn"), {
 export default function Main() {
   const [experienceContainers, setExperienceContainers] = useState([]);
   const [viewportAmount, setViewportAmount] = useState(0.1);
+
+  const scrollWrapperRef = useRef(null);
 
   useEffect(() => {
     const updateViewportAmount = () => {
@@ -482,9 +485,11 @@ export default function Main() {
           </h2>
         </div>
         <div
+          ref={scrollWrapperRef}
           id="experience-container"
-          className="flex flex-col gap-20 lg:gap-32 w-full"
+          className="relative flex flex-col gap-20 lg:gap-32 w-full"
         >
+          <ScrollProgressBar parentRef={scrollWrapperRef} />
           {experienceContainers.map(
             ({
               id,

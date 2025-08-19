@@ -1,27 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-export default function VerticalScrollBar() {
-  const sectionRef = useRef(null);
+export default function ScrollProgressBar({
+  barColor = "bg-blue-500",
+  backgroundColor = "white",
+  parentRef,
+}) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
+      if (parentRef?.current) {
+        const { top, bottom, height } =
+          parentRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+        // Calculate how far the parent element is scrolled into view
+        const scrollProgress = windowHeight - top;
+        const totalScrollable = height + 200; // Use only the parent element's height
 
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        const total = rect.height;
-        const scrolled = Math.min(Math.max(windowHeight - rect.top, 0), total);
-        setProgress((scrolled / total) * 90);
-      } else if (rect.bottom <= 0) {
-        setProgress(100);
-      } else {
-        setProgress(0);
+        // Calculate percentage, ensuring it ranges from 0 to 100
+        const scrollPercentage = Math.min(
+          Math.max((scrollProgress / totalScrollable) * 100, 0),
+          100
+        );
+        setProgress(scrollPercentage);
       }
     };
 
@@ -30,24 +34,14 @@ export default function VerticalScrollBar() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-[150vh] bg-gray-100 flex items-center justify-center"
+    <div
+      className="absolute w-2 h-full rounded-full overflow-hidden"
+      style={{ backgroundColor: backgroundColor }}
     >
-      <div className="absolute left-4 top-0 bottom-0 flex items-start justify-center">
-        <div className="w-2 h-full bg-gray-300 rounded-full overflow-hidden">
-          <div
-            className="w-full bg-blue-600 transition-all duration-75"
-            style={{ height: `${progress}%` }}
-          />
-        </div>
-      </div>
-
-      <div className="p-8">
-        <p className="text-lg text-center">
-          Scroll through this section to see the vertical bar fill.
-        </p>
-      </div>
-    </section>
+      <div
+        className={`${barColor} absolute top-0 left-0 right-0 transition-all duration-300 ease-in-out`}
+        style={{ height: `${progress}%` }}
+      ></div>
+    </div>
   );
 }
