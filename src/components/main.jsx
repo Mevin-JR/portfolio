@@ -548,6 +548,19 @@ export default function Main() {
           )}
         </div>
       </motion.section>
+      <motion.section
+        id="contact"
+        className="min-h-screen py-20 w-[80vw] flex items-center justify-between"
+        initial={{ opacity: 0, y: 75 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: viewportAmount }}
+      >
+        <div className="flex flex-col gap-10">
+          <Socials />
+          <h2 className="text-2xl">Contact Me</h2>
+        </div>
+      </motion.section>
     </>
   );
 }
