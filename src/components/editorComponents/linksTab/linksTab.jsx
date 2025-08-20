@@ -1,10 +1,10 @@
 "use client";
 
-import { File as FileIcon, Info } from "lucide-react";
+import { LuFile, LuInfo } from "react-icons/lu";
 import LinkComponent from "./linkComponent";
 import { useEffect, useRef, useState } from "react";
 import { db, storage } from "@/firebaseConfig";
-import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import toast from "react-hot-toast";
 import { doc, updateDoc } from "firebase/firestore";
 import { fetchLatestResume } from "@/helperFunctions";
@@ -94,7 +94,7 @@ export default function LinksTab() {
         <div className="basis-[45%] flex flex-col gap-10">
           <h2 className="text-2xl text-cyan-400">Links</h2>
           <div className="flex gap-2 text-gray-400">
-            <Info width={25} height={20} />
+            <LuInfo size={25} />
             <p className="text-sm">
               Change links used in various places (socials etc.) in the
               portfolio. The 'copy:' prefix can be used to copy a particular
@@ -121,7 +121,7 @@ export default function LinksTab() {
               cursor-pointer"
                 onClick={handleResumeUpload}
               >
-                <FileIcon width={50} height={50} />
+                <LuFile size={50} />
                 <div className="text-center">
                   <p>Click to upload resume</p>
                   <p>.pdf supported</p>

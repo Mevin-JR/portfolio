@@ -1,5 +1,5 @@
 import useScrollLock from "@/hooks/useScrollLock";
-import { Info } from "lucide-react";
+import { LuInfo } from "react-icons/lu";
 
 export default function ConfirmationPopup({
   isOpen,
@@ -26,7 +26,7 @@ export default function ConfirmationPopup({
           <div className="flex flex-col gap-2 items-center">
             <h1 className="text-2xl">Are you sure?</h1>
             <div className="text-gray-400 flex items-center gap-1">
-              <Info width={15} height={15} />
+              <LuInfo size={15} />
               <p className="text-xs text-gray-400">
                 This action is irreversible
               </p>

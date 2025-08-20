@@ -1,13 +1,12 @@
 import {
-  Building2,
-  Calendar,
-  MapPin,
-  Plus,
-  PlusIcon,
-  Tag,
-  Trash2,
-  X,
-} from "lucide-react";
+  LuBuilding2,
+  LuCalendar,
+  LuMapPin,
+  LuPlus,
+  LuTag,
+  LuTrash2,
+  LuX,
+} from "react-icons/lu";
 import Tooltip from "@/components/tooltip";
 import { useState } from "react";
 import DescriptionInput from "./descriptionInput";
@@ -259,7 +258,7 @@ export default function ExperienceContainer({
           <div className="basis-[25%] flex flex-col justify-center gap-5">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <Calendar />
+                <LuCalendar />
                 <h2>Date</h2>
               </div>
               <input
@@ -277,7 +276,7 @@ export default function ExperienceContainer({
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <Building2 />
+                <LuBuilding2 />
                 <h2>Company</h2>
               </div>
               <input
@@ -289,7 +288,7 @@ export default function ExperienceContainer({
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <MapPin />
+                <LuMapPin />
                 <h2>Location</h2>
               </div>
               <input
@@ -325,7 +324,7 @@ export default function ExperienceContainer({
                     className="p-2 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg cursor-pointer"
                     onClick={() => setShowDescriptionInput(true)}
                   >
-                    <PlusIcon />
+                    <LuPlus />
                   </div>
                 </Tooltip>
               </div>
@@ -346,7 +345,7 @@ export default function ExperienceContainer({
                           <p className="basis-[90%] w-40 text-white truncate overflow-hidden whitespace-nowrap">
                             {value}
                           </p>
-                          <Trash2
+                          <LuTrash2
                             className="absolute right-0 text-red-400 cursor-pointer"
                             onClick={() => removeDescription(key)}
                           />
@@ -374,7 +373,7 @@ export default function ExperienceContainer({
                           <p className="basis-[90%] w-40 text-white truncate overflow-hidden whitespace-nowrap">
                             {value}
                           </p>
-                          <Trash2
+                          <LuTrash2
                             className="absolute right-0 text-red-400 cursor-pointer"
                             onClick={() => removeDescription(key)}
                           />
@@ -403,7 +402,7 @@ export default function ExperienceContainer({
           <div className="basis-[25%] flex flex-col justify-center gap-5">
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <Tag />
+                <LuTag />
                 <h2>Tags</h2>
               </div>
               <p className="text-gray-400 text-xs">
@@ -436,7 +435,7 @@ export default function ExperienceContainer({
                       bgColor="transparent"
                       textColor="cyan"
                     >
-                      <Plus />
+                      <LuPlus />
                     </Tooltip>
                   </div>
                 </div>
@@ -456,7 +455,7 @@ export default function ExperienceContainer({
                             );
                           }}
                         >
-                          <X width={20} height={20} className="text-red-500" />
+                          <LuX size={20} className="text-red-500" />
                         </div>
                         {tag}
                       </div>
@@ -489,7 +488,7 @@ export default function ExperienceContainer({
                       bgColor="transparent"
                       textColor="cyan"
                     >
-                      <Plus />
+                      <LuPlus />
                     </Tooltip>
                   </div>
                 </div>
@@ -509,7 +508,7 @@ export default function ExperienceContainer({
                             );
                           }}
                         >
-                          <X width={20} height={20} className="text-red-500" />
+                          <LuX size={20} className="text-red-500" />
                         </div>
                         {tag}
                       </div>

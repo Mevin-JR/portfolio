@@ -5,8 +5,13 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
 import { motion, AnimatePresence } from "motion/react";
-
-import { Download, Minus, Plus, RotateCcw, View } from "lucide-react";
+import {
+  LuDownload,
+  LuMinus,
+  LuPlus,
+  LuRotateCcw,
+  LuView,
+} from "react-icons/lu";
 import { useEffect, useState } from "react";
 import Tooltip from "./tooltip";
 import { fetchLatestResume } from "@/helperFunctions";
@@ -114,7 +119,7 @@ export default function ResumeBtn() {
                      hover:text-black transition-colors duration-300"
           onClick={toggleShowResume}
         >
-          <View />
+          <LuView size={20} />
           <p>Resume</p>
         </button>
         <div className="absolute z-0 inset-0 bg-white rounded scale-x-0 origin-left transition-all duration-300 group-hover:scale-x-100"></div>
@@ -159,7 +164,7 @@ export default function ResumeBtn() {
                       className="flex items-center justify-center rounded-r-none w-full h-full p-2 cursor-pointer transition-colors duration-300 hover:bg-white/25"
                       onClick={increaseResumeScale}
                     >
-                      <Plus />
+                      <LuPlus size={22} />
                     </li>
                   </Tooltip>
                   <Tooltip text="Zoom out">
@@ -167,7 +172,7 @@ export default function ResumeBtn() {
                       className="flex items-center justify-center w-full h-full p-2 cursor-pointer transition-colors duration-300 hover:bg-white/25"
                       onClick={reduceResumeScale}
                     >
-                      <Minus />
+                      <LuMinus size={22} />
                     </li>
                   </Tooltip>
                   <Tooltip text="Reset">
@@ -175,7 +180,7 @@ export default function ResumeBtn() {
                       className="flex items-center justify-center rounded-l-none w-full h-full px-3 py-2 cursor-pointer transition-colors duration-300 hover:bg-white/25"
                       onClick={resetResumeScale}
                     >
-                      <RotateCcw size={20} />
+                      <LuRotateCcw size={20} />
                     </li>
                   </Tooltip>
                 </ul>
@@ -185,7 +190,7 @@ export default function ResumeBtn() {
                       className="flex items-center justify-center w-full h-full p-3 cursor-pointer transition-colors duration-300 hover:bg-white/25"
                       onClick={handleDownload}
                     >
-                      <Download />
+                      <LuDownload size={20} />
                     </button>
                   </div>
                 </Tooltip>
