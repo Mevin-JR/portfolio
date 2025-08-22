@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { fetchLinksRealtime } from "@/helperFunctions";
 
-export default function Socials() {
+export default function Socials({ iconSize = 32 }) {
   const [links, setLinks] = useState({});
 
   useEffect(() => {
@@ -19,17 +19,17 @@ export default function Socials() {
   const socials = [
     {
       name: "Github",
-      icon: <FaGithub size={32} />,
+      icon: <FaGithub size={iconSize} />,
       target: `${links.github}`,
     },
     {
       name: "LinkedIn",
-      icon: <FaLinkedin size={32} />,
+      icon: <FaLinkedin size={iconSize} />,
       target: `${links.linkedin}`,
     },
     {
       name: "Mail",
-      icon: <LuMail size={32} />,
+      icon: <LuMail size={iconSize} />,
       target: `${links.email}`,
     },
   ];
@@ -78,8 +78,9 @@ export default function Socials() {
       {socials.map(({ name, icon, target }) => (
         <li
           key={name}
-          className="flex items-center justify-center w-[50px] h-[50px] cursor-pointer
+          className="flex items-center justify-center cursor-pointer
             border border-gray-500 rounded bg-transparent p-2 transition-shadow hover:shadow-[0_0_25px_2px_rgba(255,255,255,0.5)]"
+          style={{ width: `${iconSize + 18}px`, height: `${iconSize + 18}px` }}
           onClick={() => openTarget(target)}
         >
           <Tooltip text={name} position="bottom" bgColor="transparent">

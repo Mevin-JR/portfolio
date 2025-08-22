@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
+import LocationGlobe from "./locationGlobe";
 const ResumeBtn = dynamic(() => import("./resumeBtn"), {
   ssr: false,
 });
@@ -546,15 +547,120 @@ export default function Main() {
       </motion.section>
       <motion.section
         id="contact"
-        className="min-h-screen py-20 w-[80vw] flex items-center justify-between"
+        className="min-h-screen py-40 w-[80vw] flex flex-col justify-between"
         initial={{ opacity: 0, y: 75 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         viewport={{ once: true, amount: viewportAmount }}
       >
-        <div className="flex flex-col gap-10">
-          <Socials />
-          <h2 className="text-2xl">Contact Me</h2>
+        <div id="contact-title" className="mb-10">
+          <h1 className="text-gray-400 text-md md:text-lg uppercase">
+            Contact
+          </h1>
+          <h2 className="text-2xl md:text-4xl font-bold">
+            Get in <span className="text-cyan-400">Touch</span>
+          </h2>
+        </div>
+        <div className="flex justify-between">
+          <div className="basis-[50%] flex flex-col gap-5">
+            <div className="flex flex-col gap-5 text-gray-400">
+              <p>
+                I’m always open to new opportunities, collaborations, and
+                meaningful conversations. Whether you have a project in mind or
+                just want to connect, feel free to reach out.
+              </p>
+              <p>Available for full-time roles & freelance projects.</p>
+            </div>
+            <div className="h-full flex justify-between gap-5">
+              <LocationGlobe />
+              <div className="basis-[50%] flex flex-col justify-between gap-5">
+                <div
+                  className="relative h-full flex flex-col items-center justify-center
+                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg overflow-hidden"
+                >
+                  <Image
+                    src="/wrinkled_black_bg.jpg"
+                    alt="Background"
+                    width={1000}
+                    height={1000}
+                    className="-z-10 w-full h-full absolute top-0 left-0 rounded-lg opacity-25 rotate-180"
+                  />
+                  <Image
+                    src="/wings_vector.png"
+                    alt="Wings Vector"
+                    width={1000}
+                    height={1000}
+                    className="absolute -top-[85px] opacity-5 z-10"
+                  />
+                  <Image
+                    src="/favicons/favicon-192x192.png"
+                    alt="Portfolio Logo"
+                    width={56}
+                    height={56}
+                    className="z-20"
+                  />
+                  <h3 className="flex justify-center items-center text-center text-xl font-bold mt-10">
+                    Let's work together on your next project
+                  </h3>
+                </div>
+                <div
+                  className="relative h-full flex flex-col items-center justify-center gap-6
+                    bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg"
+                >
+                  <Image
+                    src="/wrinkled_black_bg.jpg"
+                    alt="Background"
+                    width={1000}
+                    height={1000}
+                    className="-z-10 w-full h-full absolute top-0 left-0 rounded-lg opacity-20"
+                  />
+                  <h3 className="text-2xl">Socials</h3>
+                  <Socials />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="basis-[40%] mx-auto">
+            <form
+              className="h-full w-full flex flex-col gap-8
+                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-10 rounded-lg"
+            >
+              <label className="flex flex-col gap-2">
+                Full Name
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="John Doe"
+                  className="text-cyan-400 outline-none bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                Email
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="johndoe@gmail.com"
+                  className="text-cyan-400 outline-none bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                Message
+                <textarea
+                  placeholder="Hi! How are you..?"
+                  className="h-40 resize-none outline-none scrollbar-hide text-cyan-400
+                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
+                />
+              </label>
+              <button
+                type="submit"
+                className="self-end px-4 py-2 border 
+                border-cyan-400/50 bg-cyan-400/20 text-cyan-400 rounded
+                hover:text-black hover:bg-cyan-400 transition-all duration-200"
+              >
+                Send
+              </button>
+            </form>
+          </div>
         </div>
       </motion.section>
     </>
