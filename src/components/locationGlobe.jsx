@@ -100,10 +100,10 @@ export default function LocationGlobe() {
             {
               lat: 8.522528129946245,
               lng: 76.95899038125782,
-              text: "[IN] India",
+              text: "Currently in India",
             },
           ]}
-          labelSize={1.1}
+          labelSize={1.5}
           labelDotRadius={1}
           labelColor={() => "#facc15"}
         />

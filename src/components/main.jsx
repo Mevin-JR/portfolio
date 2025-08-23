@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Socials from "./socials";
 import Image from "next/image";
-import { LuArrowUpRight, LuMapPin, LuSparkle } from "react-icons/lu";
+import { LuArrowUpRight, LuCopy, LuMapPin, LuSparkle } from "react-icons/lu";
 import {
   fetchExperienceContainers,
   logUniqueUserVisit,
@@ -562,7 +562,7 @@ export default function Main() {
           </h2>
         </div>
         <div className="flex justify-between">
-          <div className="basis-[50%] flex flex-col gap-5">
+          <div className="basis-[55%] flex flex-col gap-5">
             <div className="flex flex-col gap-5 text-gray-400">
               <p>
                 I’m always open to new opportunities, collaborations, and
@@ -575,40 +575,44 @@ export default function Main() {
               <LocationGlobe />
               <div className="basis-[50%] flex flex-col justify-between gap-5">
                 <div
-                  className="relative h-full flex flex-col items-center justify-center
+                  className="relative h-full flex flex-col items-center justify-end gap-5
                 bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg overflow-hidden"
                 >
                   <Image
-                    src="/wrinkled_black_bg.jpg"
+                    src="/backgrounds/wrinkled_black_bg.jpg"
                     alt="Background"
                     width={1000}
                     height={1000}
-                    className="-z-10 w-full h-full absolute top-0 left-0 rounded-lg opacity-25 rotate-180"
+                    className="-z-20 w-full h-full absolute top-0 left-0 rounded-lg opacity-25
+                    [mask-image:linear-gradient(to_bottom,black,transparent)]
+                    [mask-repeat:no-repeat] [mask-size:100%_100%]
+                    [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]
+                    [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
                   />
                   <Image
-                    src="/wings_vector.png"
-                    alt="Wings Vector"
-                    width={1000}
-                    height={1000}
-                    className="absolute -top-[85px] opacity-5 z-10"
-                  />
-                  <Image
-                    src="/favicons/favicon-192x192.png"
+                    src="/icons/logo_wings.png"
                     alt="Portfolio Logo"
-                    width={56}
-                    height={56}
-                    className="z-20"
+                    width={300}
+                    height={300}
+                    className="-z-10 opacity-70 absolute -top-5 left-1/2 -translate-x-1/2"
                   />
-                  <h3 className="flex justify-center items-center text-center text-xl font-bold mt-10">
+                  <h3 className="flex justify-center items-center text-center text-xl font-bold drop-shadow-[0px_0px_20px_rgba(255,255,255,0.6)]">
                     Let's work together on your next project
                   </h3>
+                  <div
+                    className="flex items-center justify-center gap-3 cursor-pointer 
+                  bg-white/0 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg"
+                  >
+                    <LuCopy size={18} />
+                    <p>jrmevin@gmail.com</p>
+                  </div>
                 </div>
                 <div
-                  className="relative h-full flex flex-col items-center justify-center gap-6
+                  className="basis-[20%] relative h-full flex flex-col items-center justify-center gap-6
                     bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg"
                 >
                   <Image
-                    src="/wrinkled_black_bg.jpg"
+                    src="/backgrounds/wrinkled_black_bg.jpg"
                     alt="Background"
                     width={1000}
                     height={1000}
@@ -620,7 +624,7 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div className="basis-[40%] mx-auto">
+          <div className="basis-[40%]">
             <form
               className="h-full w-full flex flex-col gap-8
                 bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-10 rounded-lg"
