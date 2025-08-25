@@ -5,7 +5,7 @@ import LiveClock from "./liveClock";
 
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
-export default function LocationGlobe() {
+export default function LocationGlobe({ size = 500 }) {
   const [globeImage, setGlobeImage] = useState(
     "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
   );
@@ -51,9 +51,10 @@ export default function LocationGlobe() {
   return (
     <div
       ref={containerRef}
-      className="relative h-full w-[450px] bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg flex flex-col gap-5 items-center overflow-hidden"
+      className="relative h-[450px] xl:h-full w-full xl:w-[450px] bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg 
+      flex flex-col gap-5 items-center overflow-hidden"
     >
-      <h2 className="text-xl text-center font-bold mt-5 bg-gradient-to-b from-white via-cyan-400 to-cyan-400 bg-clip-text text-transparent">
+      <h2 className="sm:text-xl text-center font-bold mt-5 bg-gradient-to-b from-white via-cyan-400 to-cyan-400 bg-clip-text text-transparent">
         Comfortable working across multiple time zones
       </h2>
       <div className="flex gap-4">
@@ -92,8 +93,8 @@ export default function LocationGlobe() {
       <div className="z-10 absolute -bottom-52 left-1/2 -translate-x-1/2">
         <Globe
           ref={globeRef}
-          width={500}
-          height={500}
+          width={size}
+          height={size}
           globeImageUrl={globeImage}
           backgroundColor="rgba(0,0,0,0)"
           labelsData={[

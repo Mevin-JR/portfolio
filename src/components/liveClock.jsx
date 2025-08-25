@@ -25,8 +25,8 @@ export default function LiveClock() {
 
   return (
     <div
-      className="z-40 w-[110px] absolute bottom-2 left-[6px] flex gap-2 items-center justify-center
-      bg-[#161616] border border-white/20 shadow-md p-3 rounded-lg font-mono"
+      className="z-40 w-[110px] absolute bottom-2 left-2 md:left-[6px] flex gap-2 items-center justify-center
+      bg-[#161616] border border-white/20 shadow-md p-2 sm:p-3 rounded-lg font-mono"
     >
       <LuClock size={16} />
       <p className="text-sm text-yellow-400">{currentTime}</p>

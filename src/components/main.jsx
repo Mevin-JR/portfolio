@@ -561,8 +561,8 @@ export default function Main() {
             Get in <span className="text-cyan-400">Touch</span>
           </h2>
         </div>
-        <div className="flex justify-between">
-          <div className="basis-[55%] flex flex-col gap-5">
+        <div className="flex flex-col xl:flex-row gap-10 xl:justify-between">
+          <div className="xl:basis-[50%] flex flex-col gap-5">
             <div className="flex flex-col gap-5 text-gray-400">
               <p>
                 I’m always open to new opportunities, collaborations, and
@@ -571,7 +571,7 @@ export default function Main() {
               </p>
               <p>Available for full-time roles & freelance projects.</p>
             </div>
-            <div className="h-full flex justify-between gap-5">
+            <div className="h-full flex flex-col md:flex-row justify-between gap-5">
               <LocationGlobe />
               <div className="basis-[50%] flex flex-col justify-between gap-5">
                 <div
@@ -592,16 +592,16 @@ export default function Main() {
                   <Image
                     src="/icons/logo_wings.png"
                     alt="Portfolio Logo"
-                    width={300}
-                    height={300}
-                    className="-z-10 opacity-70 absolute -top-5 left-1/2 -translate-x-1/2"
+                    width={350}
+                    height={350}
+                    className="hidden md:block -z-10 opacity-70 absolute md:-top-2 -top-8 left-1/2 -translate-x-1/2"
                   />
-                  <h3 className="flex justify-center items-center text-center text-xl font-bold drop-shadow-[0px_0px_20px_rgba(255,255,255,0.6)]">
+                  <h3 className="flex justify-center items-center text-center md:text-xl font-bold drop-shadow-[0px_0px_20px_rgba(255,255,255,0.6)]">
                     Let's work together on your next project
                   </h3>
                   <div
                     className="flex items-center justify-center gap-3 cursor-pointer 
-                  bg-white/0 backdrop-blur-sm border border-white/20 shadow-md p-4 rounded-lg"
+                  bg-white/0 backdrop-blur-sm border border-white/20 shadow-md p-2 md:p-4 rounded-lg"
                   >
                     <LuCopy size={18} />
                     <p>jrmevin@gmail.com</p>
@@ -618,16 +618,16 @@ export default function Main() {
                     height={1000}
                     className="-z-10 w-full h-full absolute top-0 left-0 rounded-lg opacity-20"
                   />
-                  <h3 className="text-2xl">Socials</h3>
-                  <Socials />
+                  <h3 className="text-xl md:text-2xl">Socials</h3>
+                  <Socials iconSize={22} />
                 </div>
               </div>
             </div>
           </div>
-          <div className="basis-[40%]">
+          <div className="xl:basis-[45%] w-full flex justify-center">
             <form
-              className="h-full w-full flex flex-col gap-8
-                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-10 rounded-lg"
+              className="h-full w-full lg:w-[500px] xl:w-full flex flex-col gap-8
+                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 md:p-10 lg:p-5 xl:p-10 rounded-lg"
             >
               <label className="flex flex-col gap-2">
                 Full Name
