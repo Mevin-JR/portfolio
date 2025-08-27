@@ -5,6 +5,7 @@ import Socials from "./socials";
 import Image from "next/image";
 import { LuArrowUpRight, LuCopy, LuMapPin, LuSparkle } from "react-icons/lu";
 import {
+  copyEmailToClipboard,
   fetchExperienceContainers,
   logUniqueUserVisit,
   logUserVisit,
@@ -601,6 +602,7 @@ export default function Main() {
                     Let's work together on your next project
                   </h3>
                   <div
+                    onClick={() => copyEmailToClipboard("jrmevin@gmail.com")}
                     className="flex items-center justify-center gap-3 cursor-pointer 
                   bg-white/0 backdrop-blur-sm border border-white/20 shadow-md p-2 md:p-4 rounded-lg"
                   >

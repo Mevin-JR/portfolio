@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Tooltip from "./tooltip";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { fetchLinksRealtime } from "@/helperFunctions";
+import { copyEmailToClipboard, fetchLinksRealtime } from "@/helperFunctions";
 
 export default function Socials({ iconSize = 32 }) {
   const [links, setLinks] = useState({});
@@ -37,37 +37,7 @@ export default function Socials({ iconSize = 32 }) {
   const openTarget = (target) => {
     if (target.startsWith("copy")) {
       const email = target.replace("copy:", "");
-      // TODO: Look into this later
-      // An unusual error here, when trying to copy using a mobile devices (without https or localhost)
-      navigator.clipboard
-        .writeText(email)
-        .then(() => {
-          toast.success(`${email}\nCopied to clipboard`, {
-            duration: 5000,
-            style: {
-              background: "rgba(255, 255, 255, 0.1)",
-              color: "#fff",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            },
-          });
-        })
-        .catch((error) => {
-          toast.error("Failed to copy to clipboard", {
-            duration: 5000,
-            style: {
-              background: "rgba(255, 255, 255, 0.1)",
-              color: "#fff",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            },
-          });
-          console.error(`Failed to copy: ${error}`);
-        });
+      copyEmailToClipboard(email);
     } else {
       window.open(target, "_blank", "noopener,noreferrer");
     }
