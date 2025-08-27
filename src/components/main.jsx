@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import LocationGlobe from "./locationGlobe";
+import ContactForm from "./contactForm";
 const ResumeBtn = dynamic(() => import("./resumeBtn"), {
   ssr: false,
 });
@@ -625,45 +626,7 @@ export default function Main() {
             </div>
           </div>
           <div className="xl:basis-[45%] w-full flex justify-center">
-            <form
-              className="h-full w-full lg:w-[500px] xl:w-full flex flex-col gap-8
-                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-4 md:p-10 lg:p-5 xl:p-10 rounded-lg"
-            >
-              <label className="flex flex-col gap-2">
-                Full Name
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="John Doe"
-                  className="text-cyan-400 outline-none bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                Email
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="johndoe@gmail.com"
-                  className="text-cyan-400 outline-none bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                Message
-                <textarea
-                  placeholder="Hi! How are you..?"
-                  className="h-40 resize-none outline-none scrollbar-hide text-cyan-400
-                bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg"
-                />
-              </label>
-              <button
-                type="submit"
-                className="self-end px-4 py-2 border 
-                border-cyan-400/50 bg-cyan-400/20 text-cyan-400 rounded
-                hover:text-black hover:bg-cyan-400 transition-all duration-200"
-              >
-                Send
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </motion.section>
