@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="basis-[25%] flex flex-col gap-5">
           <LogoText size={22} />
           <p className="text-sm text-gray-400">
-            Hi, I’m Mevin, a backend developer, creative builder & tech
+            I’m Mevin, a full-stack developer, creative builder & tech
             enthusiast. Glad you stopped by my portfolio!
           </p>
         </div>
