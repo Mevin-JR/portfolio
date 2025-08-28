@@ -17,19 +17,19 @@ export default function Footer() {
   const footerLiCSS =
     "cursor-pointer hover:text-cyan-400 transition-colors duration-200";
   return (
-    <footer className="w-[80%] flex flex-col gap-5">
-      <div className="bg-[#0f0f0f] rounded p-10 flex justify-between items-center">
-        <div className="basis-[25%] flex flex-col gap-5">
+    <footer className="xl:w-[80%] flex flex-col gap-5">
+      <div className="bg-[#0f0f0f] rounded p-10 flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center">
+        <div className="md:basis-[25%] flex flex-col gap-2 md:gap-5">
           <LogoText size={22} />
           <p className="text-sm text-gray-400">
             I’m Mevin, a full-stack developer, creative builder & tech
             enthusiast. Glad you stopped by my portfolio!
           </p>
         </div>
-        <div className="basis-[50%] flex justify-around">
-          <div className="flex flex-col gap-5">
+        <div className="w-full md:basis-[50%] flex flex-col md:flex-row gap-5 md:justify-around">
+          <div className="flex flex-col gap-2 md:gap-5">
             <h2>General</h2>
-            <ul className="text-sm text-gray-300 flex flex-col gap-3">
+            <ul className="text-sm text-gray-400 flex md:flex-col gap-3">
               <li className={footerLiCSS}>
                 <a href="#">Home</a>
               </li>
@@ -44,9 +44,9 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2 md:gap-5">
             <h2>Specifics</h2>
-            <ul className="text-sm text-gray-300 flex flex-col gap-3">
+            <ul className="text-sm text-gray-400 flex md:flex-col gap-3">
               <li className={footerLiCSS}>
                 <a href="#skills">Skills</a>
               </li>
@@ -56,9 +56,9 @@ export default function Footer() {
               <li className={footerLiCSS}>Guest book</li>
             </ul>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2 md:gap-5">
             <h2>More</h2>
-            <ul className="text-sm text-gray-300 flex flex-col gap-3">
+            <ul className="text-sm text-gray-400 flex md:flex-col gap-3">
               <li className={footerLiCSS}>Links</li>
               <li className={footerLiCSS}>
                 <a href="#contact">Get in touch</a>
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full flex items-center justify-between text-sm text-gray-400 px-5">
+      <div className="w-full flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-between text-sm text-gray-400 px-5">
         <p>&copy; 2025 Mevin JR. All rights reserved</p>
         <div className="flex gap-3">
           <a href={links.github} target="_blank">
