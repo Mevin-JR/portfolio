@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import LocationGlobe from "./locationGlobe";
 import ContactForm from "./contactForm";
+import Footer from "./footer";
 const ResumeBtn = dynamic(() => import("./resumeBtn"), {
   ssr: false,
 });
@@ -632,6 +633,9 @@ export default function Main() {
           </div>
         </div>
       </motion.section>
+      <section className="w-[80vw] py-10 flex items-center justify-center">
+        <Footer />
+      </section>
     </>
   );
 }

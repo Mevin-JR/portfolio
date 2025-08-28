@@ -4,7 +4,6 @@ import { LuMail } from "react-icons/lu";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Tooltip from "./tooltip";
-import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { copyEmailToClipboard, fetchLinksRealtime } from "@/helperFunctions";
 

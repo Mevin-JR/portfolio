@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LogoText from "./logoText";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,10 +29,7 @@ export default function Navbar() {
              bg-white/5 backdrop-blur-sm border border-white/20 shadow-md p-3 rounded-lg
              lg:bg-transparent lg:backdrop-blur-none lg:border-none lg:shadow-none lg:p-0 lg:rounded-none"
       >
-        <h1 className="text-2xl font-semibold flex gap-[2px] items-end cursor-pointer">
-          <a href="#">MJR</a>
-          <span className="text-sm text-cyan-400 mb-[3px] md:mb-[2px]">■</span>
-        </h1>
+        <LogoText />
         <ul className="hidden lg:flex gap-7 absolute left-1/2 transform -translate-x-1/2 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/20 shadow-md">
           {navLinks.map((navItem) => (
             <li
