@@ -9,7 +9,7 @@ export default function LiveClock() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date().toLocaleString("en-GB", {
-        timezone: "Asia/Kolkata",
+        timezone: "Europe/Dublin",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
