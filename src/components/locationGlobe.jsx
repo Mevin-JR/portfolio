@@ -7,7 +7,7 @@ const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 export default function LocationGlobe({ size = 500 }) {
   const [globeImage, setGlobeImage] = useState(
-    "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+    "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
   );
   const [activeGlobe, setActiveGlobe] = useState("Satellite");
 
@@ -27,13 +27,13 @@ export default function LocationGlobe({ size = 500 }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting && globeRef.current) {
             globeRef.current.pointOfView(
-              { lat: 5, lng: 76.95899038125782, altitude: 1.5 },
-              2000
+              { lat: 35, lng: -6.2603, altitude: 1.5 },
+              2000,
             );
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (containerRef.current) {
@@ -67,7 +67,7 @@ export default function LocationGlobe({ size = 500 }) {
             }`}
           onClick={() => {
             setGlobeImage(
-              "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+              "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
             );
             setActiveGlobe("Satellite");
           }}
@@ -99,9 +99,9 @@ export default function LocationGlobe({ size = 500 }) {
           backgroundColor="rgba(0,0,0,0)"
           labelsData={[
             {
-              lat: 8.522528129946245,
-              lng: 76.95899038125782,
-              text: "Currently in India",
+              lat: 53.3498,
+              lng: -6.2603,
+              text: "Currently in Ireland",
             },
           ]}
           labelSize={1.5}
