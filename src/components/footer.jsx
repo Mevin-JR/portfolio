@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="w-full flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-between text-sm text-gray-400 px-5">
-        <p>&copy; 2025 Mevin JR. All rights reserved</p>
+        <p>&copy; {new Date().getFullYear()} Mevin JR. All rights reserved</p>
         <div className="flex gap-3">
           <a href={links.github} target="_blank">
             <FaGithub size={16} />
