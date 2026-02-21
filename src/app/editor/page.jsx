@@ -8,7 +8,9 @@ import Navbar from "@/components/navbar";
 import OrbColors from "@/components/orbColors";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { FaArrowLeft, FaGithub } from "react-icons/fa";
 
 const tabComponents = {
   links: LinksTab,
@@ -37,7 +39,12 @@ export default function EditorPage() {
           {!session ? (
             <>
               <main className="relative flex flex-col items-center justify-center min-h-screen">
-                <Navbar />
+                <Link
+                  href="/"
+                  className="absolute left-5 top-5 flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-cyan-600 cursor-pointer"
+                >
+                  <FaArrowLeft size={22} />
+                </Link>
                 <div className="w-[90vw] sm:w-auto flex flex-col gap-4 items-center justify-center border border-cyan-400 p-4 rounded">
                   <h2 className="text-cyan-400 text-2xl">Editor Sign In</h2>
                   <div className="flex flex-col gap-2 items-center justify-center">
@@ -48,12 +55,7 @@ export default function EditorPage() {
                       className="flex gap-2 items-center bg-cyan-600 p-2 rounded cursor-pointer"
                       onClick={() => signIn("github")}
                     >
-                      <Image
-                        src="/icons/socials/github.svg"
-                        alt="Github Icon"
-                        height={25}
-                        width={25}
-                      />
+                      <FaGithub size={25} />
                       <p>Sign In</p>
                     </div>
                   </div>

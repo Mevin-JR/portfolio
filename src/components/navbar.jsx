@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import LogoText from "./logoText";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Navbar() {
     }
   };
 
-  // Change nav items here (dynamic)
+  // TODO: Change nav items here (dynamic)
   const navLinks = [
     { text: "Home", link: "#" },
     { text: "About", link: "#about" },
@@ -36,7 +37,7 @@ export default function Navbar() {
               key={navItem.text}
               className="relative group cursor-pointer px-2 py-1 hover:text-cyan-500 transition-all duration-300 hover:-translate-x-[2px] hover:-translate-y-[2px]"
             >
-              <a href={navItem.link}>{navItem.text}</a>
+              <Link href={navItem.link}>{navItem.text}</Link>
               {/* Bottom border */}
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-cyan-400 origin-right transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
               {/* Right border */}

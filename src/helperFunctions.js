@@ -58,7 +58,7 @@ export const logUniqueUserVisit = async (visitorId) => {
       "stats",
       "page_visitors",
       "visitors_data",
-      visitorId
+      visitorId,
     );
     await setDoc(visitorRef, {
       visitorId,
@@ -95,7 +95,7 @@ export const logUserVisit = async (visitorId) => {
       "stats",
       "page_visitors",
       "visitors_data",
-      visitorId
+      visitorId,
     );
 
     const visitData = {
@@ -141,7 +141,7 @@ export const updatePageViewCount = async () => {
   try {
     const viewCountRef = doc(db, "stats", "page_visitors");
     const visitorsDataSnap = await getDocs(
-      collection(db, "stats", "page_visitors", "visitors_data")
+      collection(db, "stats", "page_visitors", "visitors_data"),
     );
 
     let totalVisits = 0;
@@ -162,7 +162,7 @@ export const updatePageViewCount = async () => {
 /*
  * Fetch page view count (realtime)
  */
-export const fetchPageViewCount = async (callback) => {
+export const fetchPageViewCount = (callback) => {
   try {
     const viewCountRef = doc(db, "stats", "page_visitors");
     return onSnapshot(viewCountRef, (snap) => {

@@ -37,7 +37,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <body className={`${aldrich.variable} antialiased`}>
         <AccentColorProvider>
           <div className="hidden md:block">
