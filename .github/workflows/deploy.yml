@@ -26,7 +26,6 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --comment "Deploy from GitHub Actions" \
             --parameters 'commands=[
-              "cd /home/ec2-user/portfolio",
-              "./deploy.sh"
+              "sudo -u ec2-user /home/ec2-user/portfolio/deploy.sh"
             ]' \
             --output text
